@@ -83,7 +83,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
@@ -168,11 +168,11 @@
 	# add libs
   ];
   
-	hardware.opengl = {
-		enable = true;
-		driSupport = true;
-		driSupport32Bit = true;
-	};
+#	hardware.opengl = {
+#		enable = true;
+#		driSupport = true;
+#		driSupport32Bit = true;
+#	};
 
 
 
