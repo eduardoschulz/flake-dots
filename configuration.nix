@@ -75,7 +75,6 @@
     xkbVariant = "";
 		displayManager.gdm.enable = true;
 		desktopManager.gnome.enable = true;
-		windowManager.dwm.enable = true;
 		libinput.enable = true;
   };
 
@@ -106,8 +105,6 @@
     isNormalUser = true;
     description = "Eduardo";
     extraGroups = [ "networkmanager" "wheel" "video" "docker" "adbusers" ];
-    packages = with pkgs; [
-    ];
   };
 
   # Allow unfree packages
@@ -152,7 +149,8 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-};	
+	};	
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -168,13 +166,6 @@
 	# add libs
   ];
   
-#	hardware.opengl = {
-#		enable = true;
-#		driSupport = true;
-#		driSupport32Bit = true;
-#	};
-
-
 
   virtualisation.docker.enable = true;
   networking.usePredictableInterfaceNames = true;

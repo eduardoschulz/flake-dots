@@ -22,7 +22,7 @@ in {
 	home = {
 		username = "${username}";
 		homeDirectory = "/home/${username}";
-		stateVersion = "23.11";
+		stateVersion = "24.05";
 
 		packages = with pkgs; [
 			neovim
@@ -30,7 +30,6 @@ in {
 			neofetch
 			cargo
 			dunst
-			clang-tools_9
 			feh
 			fuse-common
 			freetype
@@ -56,12 +55,12 @@ in {
 			mpv
 			transmission-gtk
 			librewolf
-			minecraft
 			htop
 			meslo-lg
 			vesktop
 			vencord
 			mangohud
+			st
 		];
 	};
 	
@@ -79,7 +78,7 @@ in {
 			};
 			
 		};
-		};
+	};
 
 
 

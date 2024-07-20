@@ -12,10 +12,6 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-	boot.kernelParams = [
-		"video=HDMI-A-1:2560x1080@60"
-		"video=DP-1:1920x1080@60"
-	];
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
 
