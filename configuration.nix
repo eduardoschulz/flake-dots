@@ -5,7 +5,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  nix = {
+
+	nix = {
     settings = {
        warn-dirty = true;
        experimental-features = "nix-command flakes";
@@ -13,33 +14,47 @@
     };
   };
 
-	security = {
-		rtkit.enable = true;
-		polkit.enable = true;
-	};
-
 	nixpkgs.config = {
 		allowUnfree = true;
 		allowUnfreePredicate = pkg: builtins.elem (builtins.parseDrvName pkg.name).name ["steam"];
 	};
 
+	security = {
+		rtkit.enable = true;
+		polkit.enable = true;
+	};
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
 
-	systemd = {
-    # Create a separate slice for nix-daemon that is
-    # memory-managed by the userspace systemd-oomd killer
-    slices."nix-daemon".sliceConfig = {
-      ManagedOOMMemoryPressure = "kill";
-      ManagedOOMMemoryPressureLimit = "50%";
-    };
-    services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
+  services = {
+    dbus.enable = true;
+    picom.enable = true;
 
-    # If a kernel-level OOM event does occur anyway,
-    # strongly prefer killing nix-daemon child processes
-    services."nix-daemon".serviceConfig.OOMScoreAdjust = 1000;
+    xserver = {
+      enable = true;
+      windowManager.dwm.enable = true;
+      layout = "us";
+
+      displayManager = {
+        lightdm.enable = true;
+        #setupCommands = ''
+        #  ${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal
+        #'';
+        autoLogin = {
+          enable = false; 
+          user = "eduardo";
+        };
+      };
+    };
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      dwm = prev.dwm.overrideAttrs (old: {src = /home/eduardo/.config/dwm;}); #FIX ME: Update with path to your dwm folder
+    })
+  ];
 
   boot.loader.efi.canTouchEfiVariables = true;
  # boot.supportedFilesystems = [ "zfs" ];
@@ -69,14 +84,14 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-		layout = "us";
-    xkbVariant = "";
-		displayManager.gdm.enable = true;
-		desktopManager.gnome.enable = true;
-		libinput.enable = true;
-  };
+#  services.xserver = {
+#    enable = true;
+#		layout = "us";
+#    xkbVariant = "";
+#		displayManager.gdm.enable = true;
+#		desktopManager.gnome.enable = true;
+#j		libinput.enable = true;
+# };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -178,6 +193,22 @@
       ExecStart = "${pkgs.lact}/bin/lact daemon";
     };
     wantedBy = ["multi-user.target"];
+  };
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 
 
