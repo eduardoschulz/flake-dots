@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{ config, pkgs, inputs, ...}: let
 	username = "eduardo";
 in {
 	fonts.fontconfig.enable = true;
@@ -9,7 +9,6 @@ in {
 			createDirectories = true;
 		};
 	};
-
 
 
 	nixpkgs = {
@@ -62,6 +61,8 @@ in {
 			mangohud
 			st
 			dmenu
+			slstatus
+			dunst
 		];
 	};
 	
