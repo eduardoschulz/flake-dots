@@ -156,7 +156,7 @@
     defaultEditor = true;
   };
 
-
+  virtualisation.libvirtd.enable = true;
   # ld fix
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

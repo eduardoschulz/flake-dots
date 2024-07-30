@@ -18,7 +18,7 @@
 			inherit system;
 			config.allowUnfree = true;
 		};
-		lib = nixpkgs.lib;
+      	lib = nixpkgs.lib;
 	in {
 		nixosConfigurations = {
 			eduardo = lib.nixosSystem {
