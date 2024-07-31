@@ -36,7 +36,7 @@
       enable = true;
       windowManager.dwm.enable = true;
       layout = "us";
-
+			desktopManager.gnome.enable = true;
       displayManager = {
         lightdm.enable = true;
         #setupCommands = ''
@@ -165,11 +165,6 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
 	};	
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
 
   virtualisation.libvirtd.enable = true;
   # ld fix

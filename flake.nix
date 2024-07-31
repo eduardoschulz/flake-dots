@@ -13,9 +13,12 @@
 		  url = "github:nix-community/nixvim";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		stylix = {
+			url = "github:danth/stylix";
+		};
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim, stylix, ... }:
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
@@ -33,8 +36,7 @@
 		hmConfig = {
 			eduardo = home-manager.lib.homeManagerConfiguration {
 				pkgs = import nixpkgs { inherit system; };
-				
-				modules = [ ./home.nix ];
+				modules = [ nixvim.homeManagerModules.nixvim stylix.homeManagerModules.stylix ./home.nix ];
 			};
 		};
 	};

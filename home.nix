@@ -1,5 +1,7 @@
 { config, pkgs, inputs, ...}: let
 	username = "eduardo";
+	nixvimconfig = import ./nixvim;
+
 in {
 	fonts.fontconfig.enable = true;
 	xdg = {
@@ -24,7 +26,6 @@ in {
 		stateVersion = "24.05";
 
 		packages = with pkgs; [
-			neovim
 			wget
 			neofetch
 			cargo
@@ -51,7 +52,6 @@ in {
 			gopls
 			go
 			screen
-			mpv
 			transmission-gtk
 			librewolf
 			htop
@@ -81,7 +81,54 @@ in {
 			
 		};
 	};
+	
+
+ stylix = {
+    targets.gtk.enable = false;
+    targets.firefox.enable = false;
+	};
+
+# programs.nixvim = {
+#	 enable = true;
+#	 defaultEditor = true;
+# 	 plugins = {
+#		harpoon = {
+#			enable = true;
+#		};
+#	};
+# };
+
+programs.neovim = {
+	enable = false;
+	defaultEditor = true;
+	
+	extraPackages = [
+		pkgs.shfmt
+	];
+
+	plugins = [
+		pkgs.vimPlugins.telescope-nvim
+		{
+			plugin = pkgs.vimPlugins.vimtex;
+			config = "let g:vimtex_enabled = 1";
+		}
+		pkgs.vimPlugins.dracula-nvim
+
+	];
+	
+	extraLuaConfig = ''
+		vim.opt.relativenumber = true
+
+		require('telescope').setup()
+		'';
+	viAlias = true;	
+};
 
 
+programs.tmux = {
+	enable = true;
+	keyMode = "vi";
+
+};
 
 }
