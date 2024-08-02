@@ -9,16 +9,16 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs"; 
 		};
-		nixvim = {
-		  url = "github:nix-community/nixvim";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+		#nixvim = {
+		#  url = "github:nix-community/nixvim";
+		#	inputs.nixpkgs.follows = "nixpkgs";
+		#};
 		stylix = {
 			url = "github:danth/stylix";
 		};
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, stylix, ... }:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }:
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
@@ -36,7 +36,7 @@
 		hmConfig = {
 			eduardo = home-manager.lib.homeManagerConfiguration {
 				pkgs = import nixpkgs { inherit system; };
-				modules = [ nixvim.homeManagerModules.nixvim stylix.homeManagerModules.stylix ./home.nix ];
+				modules = [stylix.homeManagerModules.stylix ./home.nix ];
 			};
 		};
 	};

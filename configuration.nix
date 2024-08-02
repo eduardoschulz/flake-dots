@@ -35,6 +35,7 @@
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
+			videoDrivers = [ "amdgpu" ];
       layout = "us";
 			desktopManager.gnome.enable = true;
       displayManager = {
