@@ -12,6 +12,7 @@ in {
 		};
 	};
 
+	catppuccin.flavor = "mocha";
 
 	nixpkgs = {
     config = {
@@ -63,6 +64,9 @@ in {
 			dmenu
 			slstatus
 			dunst
+			kubectl
+
+			obsidian
 
 		];
 	};
@@ -125,6 +129,10 @@ in {
 
 	};
 	
+services.dunst = {
+	enable = true;
+	catppuccin.enable = true;
+};
 
  stylix = { #TODO figure out how this thing works
     targets.gtk.enable = false;
@@ -180,7 +188,14 @@ programs.neovim =
 
 programs.tmux = { enable = true;
 	keyMode = "vi";
+};
 
+services.picom = {
+	enable = true;
+	vSync = true;
+};
+services.dunst = {
+	enable = true;
 };
 
 }

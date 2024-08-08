@@ -13,12 +13,13 @@
 		#  url = "github:nix-community/nixvim";
 		#	inputs.nixpkgs.follows = "nixpkgs";
 		#};
+		catppuccin.url = "github:catppuccin/nix";
 		stylix = {
 			url = "github:danth/stylix";
 		};
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, stylix, ... }:
 	let
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
@@ -36,7 +37,7 @@
 		hmConfig = {
 			eduardo = home-manager.lib.homeManagerConfiguration {
 				pkgs = import nixpkgs { inherit system; };
-				modules = [stylix.homeManagerModules.stylix ./home.nix ];
+				modules = [catppuccin.homeManagerModules.catppuccin stylix.homeManagerModules.stylix ./home.nix ];
 			};
 		};
 	};

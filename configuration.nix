@@ -28,6 +28,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
 
+
   services = {
     dbus.enable = true;
     picom.enable = true;
