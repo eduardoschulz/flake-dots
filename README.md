@@ -1,11 +1,11 @@
+# Personal NixOS and Home-Manager configuration files 
 
-jjjjjj
 
 ```shell
+sudo nixos-rebuild --flake .#eduardo     #this will build nixos and dwm
 
-# nixos-rebuild --flake .#eduardo
-
-# nix build .#hmConfig.eduardo.activationPackage 
+# nix build .#hmConfig.eduardo.activationPackage  #this will build only homemanager
 # ./result/activate
-
 ```
+
+# TODO include repo link to dwm config
