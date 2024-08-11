@@ -31,13 +31,13 @@
 		nixosConfigurations = {
 			eduardo = lib.nixosSystem {
 				inherit system;
-				modules = [ ./configuration.nix ];
+				modules = [ os/configuration.nix ];
 			};
 		};
 		hmConfig = {
 			eduardo = home-manager.lib.homeManagerConfiguration {
 				pkgs = import nixpkgs { inherit system; };
-				modules = [catppuccin.homeManagerModules.catppuccin stylix.homeManagerModules.stylix ./home.nix ];
+				modules = [catppuccin.homeManagerModules.catppuccin stylix.homeManagerModules.stylix homemanager/home.nix ];
 			};
 		};
 	};
