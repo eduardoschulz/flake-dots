@@ -12,7 +12,7 @@ in {
 		};
 	};
 
-	catppuccin.flavor = "mocha";
+	catppuccin.flavor = "macchiato";
 
 	nixpkgs = {
     config = {
@@ -65,7 +65,8 @@ in {
 			slstatus
 			dunst
 			kubectl
-
+			networkmanagerapplet 
+			pasystray
 			obsidian
 
 		];
@@ -73,6 +74,7 @@ in {
 	
 	programs.alacritty = {
 		enable = true;
+		catppuccin.enable = true;
 		settings = {
 			window = {
 				opacity = 0.9;
@@ -83,36 +85,36 @@ in {
 			bell.animation = "EaseOutExpo";
 			bell.duration = 0;
 
-			colors = {
-				bright = {
-					black = "0x988BA2";
-					blue = "0x96CDFB";
-					cyan = "0x89DCEB";
-					green = "0xABE9B3";
-					magenta = "0xF5C2E7";
-					red = "0xF28FAD";
-					white = "0xD9E0EE";
-					yellow = "0xFAE3B0";
-				};
-				cursor = {
-					cursor = "0xF5E0DC";
-					text = "0x1E1D2F";
-				};
-				normal = {
-					black = "0x6E6C7E";
-					blue = "0x96CDFB";
-					cyan = "0x89DCEB";
-					green = "0xABE9B3";
-					magenta = "0xF5C2E7";
-					red = "0xF28FAD";
-					white = "0xD9E0EE";
-					yellow = "0xFAE3B0";
-				};
-				primary = {
-					background = "0x1E1D2F";
-					foreground = "0xD9E0EE";
-				};
-			};
+		#	colors = {
+		#		bright = {
+		#			black = "0x988BA2";
+		#			blue = "0x96CDFB";
+	#				cyan = "0x89DCEB";
+	#				green = "0xABE9B3";
+	#				magenta = "0xF5C2E7";
+	#				red = "0xF28FAD";
+	#				white = "0xD9E0EE";
+	#				yellow = "0xFAE3B0";
+	#			};
+	#			cursor = {
+	#				cursor = "0xF5E0DC";
+	#				text = "0x1E1D2F";
+	#			};
+	#			normal = {
+	#				black = "0x6E6C7E";
+	#				blue = "0x96CDFB";
+	#				cyan = "0x89DCEB";
+	#				green = "0xABE9B3";
+	#				magenta = "0xF5C2E7";
+	#				red = "0xF28FAD";
+	#				white = "0xD9E0EE";
+	#				yellow = "0xFAE3B0";
+	#			};
+	#			primary = {
+	#				background = "0x1E1D2F";
+	#				foreground = "0xD9E0EE";
+	#			};
+	#		};
 			
 			font = {
 				size = 14;
@@ -193,9 +195,6 @@ programs.tmux = { enable = true;
 services.picom = {
 	enable = true;
 	vSync = true;
-};
-services.dunst = {
-	enable = true;
 };
 
 }
