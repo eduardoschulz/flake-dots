@@ -4,15 +4,9 @@
   inputs = {
     # NixOS official package source, here using the nixos-23.11 branch
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-#		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		home-manager = {
 			url = "github:nix-community/home-manager";
-#			inputs.nixpkgs.follows = "nixpkgs"; 
 		};
-		#nixvim = {
-		#  url = "github:nix-community/nixvim";
-		#	inputs.nixpkgs.follows = "nixpkgs";
-		#};
 		catppuccin.url = "github:catppuccin/nix";
 		stylix = {
 			url = "github:danth/stylix";
@@ -29,15 +23,26 @@
       	lib = nixpkgs.lib;
 	in {
 		nixosConfigurations = {
-			eduardo = lib.nixosSystem {
+			desktop = lib.nixosSystem {
 				inherit system;
-				modules = [ os/configuration.nix ];
+				modules = [ desktop/os/configuration.nix ];
 			};
+
+			laptop = lib.nixosSystem {
+				inherit system;
+				modules = [ laptop/os/configuration.nix ];
+			};
+
 		};
 		hmConfig = {
-			eduardo = home-manager.lib.homeManagerConfiguration {
+			desktop = home-manager.lib.homeManagerConfiguration {
 				pkgs = import nixpkgs { inherit system; };
-				modules = [catppuccin.homeManagerModules.catppuccin stylix.homeManagerModules.stylix homemanager/home.nix ];
+				modules = [catppuccin.homeManagerModules.catppuccin stylix.homeManagerModules.stylix desktop/homemanager/home.nix ];
+			};
+
+			laptop = home-manager.lib.homeManagerConfiguration {
+				pkgs = import nixpkgs { inherit system; };
+				modules = [catppuccin.homeManagerModules.catppuccin stylix.homeManagerModules.stylix laptop/homemanager/home.nix ];
 			};
 		};
 	};

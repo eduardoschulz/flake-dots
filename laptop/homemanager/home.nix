@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ...}: let
+{config, pkgs, inputs, ...}: let
 	username = "eduardo";
 	nixvimconfig = import ./nixvim;
 
@@ -19,8 +19,16 @@ in {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
     };
-  };	
+		overlays = [
+				(final: prev: {
+					slstatus = prev.slstatus.overrideAttrs (old: {src = /home/eduardo/.config/slstatus;});
+					st = prev.st.overrideAttrs (old: {src = /home/eduardo/.config/st;});
+					surf = prev.surf.overrideAttrs (old: {src = /home/eduardo/.config/surf;});
+				})
+			];
 
+			
+  };	
 	programs.home-manager.enable = true;
 	home = {
 		username = "${username}";
@@ -62,12 +70,13 @@ in {
 			mangohud
 			st
 			dmenu
-			slstatus
 			dunst
 			kubectl
 			networkmanagerapplet 
 			pasystray
 			obsidian
+			slstatus
+			surf
 
 		];
 	};
@@ -117,7 +126,7 @@ in {
 	#		};
 			
 			font = {
-				size = 14;
+				size = 12;
 				normal.family = "Meslo LG L ";
 				italic.family = "Meslo LG L ";
 				bold.family = "Meslo LG L ";
@@ -152,7 +161,8 @@ programs.neovim =
 		enable = true;
 		extraPackages = with pkgs; [
 
-
+			asm-lsp
+			gopls
 			lua-language-server
 			xclip
 			wl-clipboard
@@ -162,7 +172,7 @@ programs.neovim =
 		
 			{
 				plugin = nvim-lspconfig;
-				config = toLuaFile ./nvim/plugin/lsp.lua; 
+				config = toLuaFile ../../nvim/plugin/lsp.lua; 
 			}
 
 			{
@@ -171,8 +181,21 @@ programs.neovim =
 			}
 			
 			{
+				plugin = lsp-zero-nvim;
+
+				config = toLuaFile ../../nvim/plugin/lsp.lua; 
+			}
+
+			{
+				plugin = cmp-nvim-lsp;
+
+				config = toLuaFile ../../nvim/plugin/lsp.lua;
+			}
+			
+
+			{
 				plugin = nvim-cmp;
-				config = toLuaFile ./nvim/plugin/lsp.lua;
+				config = toLuaFile ../../nvim/plugin/lsp.lua;
 
 			}
 			
@@ -184,7 +207,7 @@ programs.neovim =
 		];
 		
 		extraLuaConfig = ''
-			${builtins.readFile ./nvim/options.lua}
+			${builtins.readFile ../../nvim/options.lua}
 		'';
 	};
 
