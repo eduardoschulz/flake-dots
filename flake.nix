@@ -6,6 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 		home-manager = {
 			url = "github:nix-community/home-manager";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		catppuccin.url = "github:catppuccin/nix";
 		stylix = {
