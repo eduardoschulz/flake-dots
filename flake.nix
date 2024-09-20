@@ -5,7 +5,7 @@
     # NixOS official package source, here using the nixos-23.11 branch
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 		home-manager = {
-			url = "github:nix-community/home-manager";
+			url = "github:nix-community/home-manager/release-24.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		catppuccin.url = "github:catppuccin/nix";
