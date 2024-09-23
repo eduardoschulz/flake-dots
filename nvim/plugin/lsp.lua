@@ -27,6 +27,7 @@ require('lspconfig').marksman.setup({})
 require('lspconfig').clangd.setup({})
 require('lspconfig').gopls.setup({})
 require('lspconfig').asm_lsp.setup({})
+require('lspconfig').nil_ls.setup({})
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()

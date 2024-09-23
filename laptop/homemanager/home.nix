@@ -1,6 +1,5 @@
 {config, pkgs, inputs, ...}: let
 	username = "eduardo";
-	nixvimconfig = import ./nixvim;
 
 in {
 	fonts.fontconfig.enable = true;
@@ -11,6 +10,7 @@ in {
 			createDirectories = true;
 		};
 	};
+	
 
 	catppuccin.flavor = "macchiato";
 
@@ -160,6 +160,7 @@ programs.neovim =
 		enable = true;
 		extraPackages = with pkgs; [
 
+			nil
 			asm-lsp
 			gopls
 			lua-language-server
@@ -195,7 +196,11 @@ programs.neovim =
 			{
 				plugin = nvim-cmp;
 				config = toLuaFile ../../nvim/plugin/lsp.lua;
+			}
 
+			{
+				plugin = lualine-nvim;
+				config = toLuaFile ../../nvim/plugin/line.lua;
 			}
 			
 			cmp_luasnip
