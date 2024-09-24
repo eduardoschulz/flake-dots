@@ -202,7 +202,16 @@ programs.neovim =
 				plugin = lualine-nvim;
 				config = toLuaFile ../../nvim/plugin/line.lua;
 			}
-			
+
+			{
+				plugin = nvim-treesitter.withAllGrammars;
+				config = toLuaFile ../../nvim/plugin/ts.lua;
+			}
+
+				
+#			nvim-treesitter.withAllGrammars
+			nvim-treesitter-textobjects
+			nvim-treesitter-endwise
 			cmp_luasnip
 			cmp-nvim-lsp
 			luasnip

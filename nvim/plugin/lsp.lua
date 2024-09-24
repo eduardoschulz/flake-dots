@@ -23,11 +23,19 @@ lsp_zero.extend_lspconfig({
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
 
-require('lspconfig').marksman.setup({})
-require('lspconfig').clangd.setup({})
-require('lspconfig').gopls.setup({})
+require('lspconfig').marksman.setup({
+	    on_attach = on_attach
+})
+require('lspconfig').clangd.setup({
+    on_attach = on_attach
+})
+require('lspconfig').gopls.setup({
+    on_attach = on_attach
+})
 require('lspconfig').asm_lsp.setup({})
-require('lspconfig').nil_ls.setup({})
+require('lspconfig').nil_ls.setup({
+    on_attach = on_attach
+})
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
