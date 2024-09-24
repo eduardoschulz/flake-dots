@@ -15,3 +15,6 @@ vim.o.updatetime = 300
 
 vim.cmd("colorscheme catppuccin-mocha")
 vim.o.mouse = 'a'
+
+vim.opt.spell = true
+vim.opt.spelllang = {'pt_br', 'en_us'} 
