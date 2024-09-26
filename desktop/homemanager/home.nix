@@ -4,7 +4,8 @@
 in {
 
 	imports = [
-		../../nvim/nvim.nix
+		../../modules/nvim/nvim.nix
+		../../st/st.nix
 	];
 
 	fonts = {
