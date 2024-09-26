@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			../../common.nix
     ];
 
 	nix = {
@@ -57,6 +58,7 @@
       dwm = prev.dwm.overrideAttrs (old: {src = /home/eduardo/.config/dwm;}); #FIX ME: Update with path to your dwm folder
     })
   ];
+
 
   boot.loader.efi.canTouchEfiVariables = true;
  # boot.supportedFilesystems = [ "zfs" ];

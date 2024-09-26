@@ -2,7 +2,15 @@
 	username = "eduardo";
 
 in {
-	fonts.fontconfig.enable = true;
+
+	imports = [
+		../../nvim/nvim.nix
+	];
+
+	fonts = {
+		fontconfig.enable = true;
+		};
+
 	xdg = {
 		enable = true;
 		userDirs = {
@@ -54,7 +62,6 @@ in {
 			pandoc
 			texliveFull
 			pavucontrol
-			nerdfonts
 			gopls
 			go
 			screen
@@ -146,65 +153,6 @@ services.dunst = {
     targets.firefox.enable = false;
 	};
 
-#TODO Split into multiple config files
-
-programs.neovim = 
-	let
-    		toLua = str: "lua << EOF\n${str}\nEOF\n";
-    		toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-    	in
-	{
-	
-		enable = true;
-		extraPackages = with pkgs; [
-
-			asm-lsp
-			gopls
-			lua-language-server
-			xclip
-			wl-clipboard
-		];
-
-		plugins = with pkgs.vimPlugins; [
-		
-			{
-				plugin = nvim-lspconfig;
-				config = toLuaFile ../../nvim/plugin/lsp.lua; 
-			}
-
-			{
-				plugin = comment-nvim;
-				config = toLua "require(\"Comment\").setup()";
-			}
-			
-			{
-				plugin = lsp-zero-nvim;
-				config = toLuaFile ../../nvim/plugin/lsp.lua;
-			}
-
-			{
-				plugin = cmp-nvim-lsp;
-				config = toLuaFile ../../nvim/plugin/lsp.lua;
-			}
-			
-
-			{
-				plugin = nvim-cmp;
-				config = toLuaFile ../../nvim/plugin/lsp.lua;
-
-			}
-			
-			cmp_luasnip
-			cmp-nvim-lsp
-			luasnip
-			friendly-snippets
-			catppuccin-nvim
-		];
-		
-		extraLuaConfig = ''
-			${builtins.readFile ../../nvim/options.lua}
-		'';
-	};
 
 programs.tmux = { enable = true;
 	keyMode = "vi";

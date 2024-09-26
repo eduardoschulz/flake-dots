@@ -28,6 +28,6 @@ nix build .#hmConfig.laptop.activationPackage  #this will build only homemanager
 - [x] Make homemanager import a nvim.nix file to install dependencies
 - [x] Add spell checking
     - [ ] Find a better plugin. feels laggy.
-- [ ] Add dwm and st as submodules of this repo
+- [ - ] Add dwm and st as submodules of this repo
 - [ ] Fix Treesitter
 - [ ] Include some templates for development environments

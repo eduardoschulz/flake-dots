@@ -1,3 +1,6 @@
+/*
+	Configuration for Desktop and Laptop Neovim.
+*/
 {pkgs, ...}:
 	let
     		toLua = str: "lua << EOF\n${str}\nEOF\n";
@@ -38,20 +41,16 @@ programs.neovim = {
 				plugin = comment-nvim;
 				config = toLua "require(\"Comment\").setup()";
 			}
-			
 			{
 				plugin = lsp-zero-nvim;
-
 				config = toLuaFile ./plugin/lsp.lua; 
 			}
 
 			{
 				plugin = cmp-nvim-lsp;
-
 				config = toLuaFile ./plugin/lsp.lua;
 			}
 			
-
 			{
 				plugin = nvim-cmp;
 				config = toLuaFile ./plugin/lsp.lua;
@@ -76,13 +75,16 @@ programs.neovim = {
 				config = toLuaFile ./plugin/spell-cmp.lua;
 			}
 
+			{
+				plugin = luasnip;
+				config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
+			}
 
 #			nvim-treesitter.withAllGrammars
 			nvim-treesitter-textobjects
 			nvim-treesitter-endwise
 			cmp_luasnip
 			cmp-nvim-lsp
-			luasnip
 			friendly-snippets
 			catppuccin-nvim
 		];
