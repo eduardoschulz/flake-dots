@@ -4,8 +4,7 @@
 in {
 	
 	imports = [
-		../../modules/nvim/nvim.nix
-		../../st/st.nix
+		../../nvim/nvim.nix
 	];
 
 
