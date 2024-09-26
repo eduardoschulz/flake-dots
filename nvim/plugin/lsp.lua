@@ -17,61 +17,32 @@ local lsp_attach = function(client, bufnr)
   vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end
 
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 lsp_zero.extend_lspconfig({
   sign_text = true,
   lsp_attach = lsp_attach,
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  capabilities = capabilities,
 })
 
 require('lspconfig').marksman.setup({
-	    on_attach = on_attach
+	    on_attach = on_attach,
+	    capabilities = capabilities, 
 })
 require('lspconfig').clangd.setup({
-    on_attach = on_attach
+	on_attach = on_attach,
+	capabilities = capabilities, 
 })
 require('lspconfig').gopls.setup({
-    on_attach = on_attach
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 require('lspconfig').asm_lsp.setup({})
 require('lspconfig').nil_ls.setup({
-    on_attach = on_attach
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
-
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-local luasnip = require ('luasnip')
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup{}
-
---cmp.setup({
---sources = {
---  {name = 'nvim_lsp'},
---},
---mapping = cmp.mapping.preset.insert({
---  -- Navigate between completion items
---  ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
---  ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
-
---  -- `Enter` key to confirm completion
---  ['<CR>'] = cmp.mapping.confirm({select = false}),
-
---  -- Ctrl+Space to trigger completion menu
---  ['<C-Space>'] = cmp.mapping.complete(),
-
---  -- Navigate between snippet placeholder
---  ['<C-f>'] = cmp_action.vim_snippet_jump_forward(),
---  ['<C-b>'] = cmp_action.vim_snippet_jump_backward(),
-
---  -- Scroll up and down in the completion documentation
---  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
---  ['<C-d>'] = cmp.mapping.scroll_docs(4),
---}),
---snippet = {
---  expand = function(args)
---    vim.snippet.expand(args.body)
---  end,
---},
---
 
 
 local cmp = require('cmp')
@@ -118,5 +89,7 @@ cmp.setup {
     sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+				{ name = 'path' },
+				{ name = 'buffer' },
     },
 }

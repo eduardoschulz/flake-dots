@@ -22,6 +22,7 @@ programs.neovim = {
 		enable = true;
 		extraPackages = with pkgs; [
 
+			clang-tools
 			nil
 			asm-lsp
 			gopls
@@ -57,6 +58,11 @@ programs.neovim = {
 			}
 
 			{
+				plugin = trouble-nvim;
+				config = toLuaFile ./plugin/trouble.lua;
+			}
+
+			{
 				plugin = lualine-nvim;
 				config = toLuaFile ./plugin/line.lua;
 			}
@@ -69,24 +75,26 @@ programs.neovim = {
 				plugin = nvim-web-devicons;
 				config = toLua "require'nvim-web-devicons'.get_icons()";
 			}
-
-			{
-				plugin = cmp-spell;
-				config = toLuaFile ./plugin/spell-cmp.lua;
+			{ 
+				plugin = telescope-nvim;
+				config = toLuaFile ./plugin/telescope.lua;
 			}
-
-			{
+			/* {
 				plugin = luasnip;
 				config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
-			}
+			} */
 
+			telescope-file-browser-nvim
 #			nvim-treesitter.withAllGrammars
 			nvim-treesitter-textobjects
 			nvim-treesitter-endwise
+			luasnip
 			cmp_luasnip
 			cmp-nvim-lsp
 			friendly-snippets
 			catppuccin-nvim
+			cmp-path
+			cmp-buffer
 		];
 		
 		extraLuaConfig = ''
