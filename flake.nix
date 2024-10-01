@@ -11,9 +11,10 @@
     catppuccin.url = "github:catppuccin/nix";
     stylix = { url = "github:danth/stylix"; };
     dwm.url = "github:eduardoschulz/dwm";
+    st.url = "github:eduardoschulz/st";
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, stylix, dwm, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, stylix, dwm, st, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -53,6 +54,10 @@
             catppuccin.homeManagerModules.catppuccin
             stylix.homeManagerModules.stylix
             desktop/homemanager/home.nix
+{ home.packages = [
+              st.defaultPackage.${system}
+          ]; }      
+
           ];
         };
 
@@ -62,6 +67,10 @@
             catppuccin.homeManagerModules.catppuccin
             stylix.homeManagerModules.stylix
             laptop/homemanager/home.nix
+            {
+              home.packages = with pkgs;
+                [ st.defaultPackage.${system} ];
+            }
           ];
         };
       };

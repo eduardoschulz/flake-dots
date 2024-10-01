@@ -35,13 +35,13 @@ require('lspconfig').clangd.setup({
 	capabilities = capabilities, 
 })
 require('lspconfig').gopls.setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 require('lspconfig').asm_lsp.setup({})
 require('lspconfig').nil_ls.setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 

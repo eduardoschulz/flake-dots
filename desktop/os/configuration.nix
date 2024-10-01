@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-			../../common.nix
+      ../../common.nix
     ];
 
 	nix = {
@@ -52,12 +52,6 @@
       };
     };
   };
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      dwm = prev.dwm.overrideAttrs (old: {src = /home/eduardo/.config/dwm;}); #FIX ME: Update with path to your dwm folder
-    })
-  ];
 
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -142,6 +136,7 @@
 				steam
 				jre_minimal
 				lact
+                dwm.packages.${pkgs.system}.dwm
 		];
 	
 
