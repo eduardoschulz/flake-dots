@@ -29,8 +29,8 @@
           modules = [
             desktop/os/configuration.nix
             {
-              environment.systemPackages = with pkgs;
-                [ dwm.packages.${system}.dwm ];
+              environment.systemPackages = 
+                [ dwm ];
             }
           ];
         };
@@ -40,8 +40,8 @@
           modules = [
             laptop/os/configuration.nix
             {
-              environment.systemPackages = with pkgs;
-                [ dwm.packages.${system}.dwm ];
+              environment.systemPackages = 
+                [ dwm ];
             }
           ];
         };
@@ -55,8 +55,7 @@
             stylix.homeManagerModules.stylix
             desktop/homemanager/home.nix
 { home.packages = [
-              st.defaultPackage.${system}
-          ]; }      
+    st          ]; }      
 
           ];
         };
@@ -68,8 +67,8 @@
             stylix.homeManagerModules.stylix
             laptop/homemanager/home.nix
             {
-              home.packages = with pkgs;
-                [ st.defaultPackage.${system} ];
+              home.packages = 
+                [ st ];
             }
           ];
         };

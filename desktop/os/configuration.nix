@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../common.nix
+      ../kubernetes/k8s.nix
     ];
 
 	nix = {
@@ -136,10 +137,10 @@
 				steam
 				jre_minimal
 				lact
-                dwm.packages.${pkgs.system}.dwm
 		];
 	
 
+                # dwm.packages.${pkgs.system}.dwm
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
