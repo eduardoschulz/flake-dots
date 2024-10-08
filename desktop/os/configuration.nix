@@ -5,7 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../common.nix
-      ../kubernetes/k8s.nix
+#      ../kubernetes/k8s.nix
     ];
 
 	nix = {
@@ -38,9 +38,25 @@
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
-			videoDrivers = [ "amdgpu" ];
+      videoDrivers = [ "amdgpu" "nouveau" ];
+
+      config = ''
+      Section "Device"
+          Identifier "AMD"
+          Driver "amdgpu"
+          BusID "PCI:0:1:0"  
+      EndSection
+
+      Section "Device"
+          Identifier "NVIDIA"
+          Driver "nouveau"
+          BusID "PCI:0:2:0"  
+      EndSection
+      '';
+
+
       layout = "us";
-			desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;
       displayManager = {
         lightdm.enable = true;
         #setupCommands = ''
@@ -152,7 +168,10 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+   services.openssh = {
+       enable = true;
+       settings.X11Forwarding = true;
+   };
 
   # Open ports in the firewall.
    networking.firewall.enable = false;
