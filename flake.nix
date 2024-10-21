@@ -38,11 +38,7 @@
           inherit system;
           modules = [
             laptop/os/configuration.nix
-            {
-              environment.systemPackages = with pkgs;
-                [ dwm.packages.${system}.dwm ];
-            }
-          ];
+					];
         };
 
       };
