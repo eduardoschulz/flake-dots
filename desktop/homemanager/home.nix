@@ -27,11 +27,11 @@ in {
       allowUnfreePredicate = (_: true);
     };
 
-		overlays = [
+		/* overlays = [
 			(final: prev: {
 			 st = prev.st.overrideAttrs (old: {src = /home/eduardo/.config/st;}); 
 			 })
-		];
+		]; */
   };	
 
 	programs.home-manager.enable = true;
@@ -72,7 +72,6 @@ in {
 			vesktop
 			vencord
 			mangohud
-			st
 			dmenu
 			slstatus
 			dunst
@@ -80,7 +79,6 @@ in {
 			networkmanagerapplet 
 			pasystray
 			obsidian
-
 		];
 	};
 	

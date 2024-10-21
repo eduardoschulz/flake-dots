@@ -10,10 +10,11 @@
     };
     catppuccin.url = "github:catppuccin/nix";
     stylix = { url = "github:danth/stylix"; };
-    dwm.url = "github:eduardoschulz/dwm";
+    dwm-flake.url = "github:eduardoschulz/dwm";
+    st.url = "github:eduardoschulz/st";
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, stylix, dwm, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, stylix, dwm-flake, st, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -21,6 +22,9 @@
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
+      dwmOverlay = final: prev: {
+        dwm = dwm-flake.defaultPackage.${system};  
+      };
     in {
       nixosConfigurations = {
         desktop = lib.nixosSystem {
@@ -28,8 +32,7 @@
           modules = [
             desktop/os/configuration.nix
             {
-              environment.systemPackages = with pkgs;
-                [ dwm.packages.${system}.dwm ];
+                nixpkgs.overlays = [dwmOverlay];
             }
           ];
         };
@@ -38,7 +41,10 @@
           inherit system;
           modules = [
             laptop/os/configuration.nix
-					];
+            {
+                nixpkgs.overlays = [dwmOverlay ];
+            }
+          ];
         };
 
       };
@@ -49,6 +55,9 @@
             catppuccin.homeManagerModules.catppuccin
             stylix.homeManagerModules.stylix
             desktop/homemanager/home.nix
+{ home.packages = [
+    st          ]; }      
+
           ];
         };
 
@@ -58,6 +67,10 @@
             catppuccin.homeManagerModules.catppuccin
             stylix.homeManagerModules.stylix
             laptop/homemanager/home.nix
+            {
+              home.packages = 
+                [ st ];
+            }
           ];
         };
       };

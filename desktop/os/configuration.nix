@@ -4,7 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-			../../common.nix
+      ../../common.nix
+      ../kubernetes/k8s.nix
     ];
 
 	nix = {
@@ -52,12 +53,6 @@
       };
     };
   };
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      dwm = prev.dwm.overrideAttrs (old: {src = /home/eduardo/.config/dwm;}); #FIX ME: Update with path to your dwm folder
-    })
-  ];
 
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -145,6 +140,7 @@
 		];
 	
 
+                # dwm.packages.${pkgs.system}.dwm
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
