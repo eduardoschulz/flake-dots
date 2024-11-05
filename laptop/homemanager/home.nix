@@ -82,6 +82,7 @@ in {
 			obsidian
 			slstatus
 			surf
+			nitrogen
 
 		];
 	};
