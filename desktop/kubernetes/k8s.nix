@@ -17,6 +17,9 @@ in
     kubernetes
   ];
 
+  virtualisation.containerd = {
+    enable = true;
+  };
   services.kubernetes = {
     roles = ["master" "node"];
     masterAddress = kubeMasterHostname;
@@ -31,10 +34,19 @@ in
     addons.dns.enable = true;
 
     # needed if you use swap
-    kubelet.extraOpts = "--fail-swap-on=false";
+    kubelet.extraOpts = ''
+            --container-runtime-endpoint=unix:///run/containerd/containerd.sock"
+            --fail-swap-on=false
+    '';
+
+
   };
 
-    services.flannel.backend = {
+    /* services.flannel.backend = {
         Type = "host-gw";
+    }; */
+
+    services.homepage-dashboard.kubernetes = {
+        enable = true;
     };
 }

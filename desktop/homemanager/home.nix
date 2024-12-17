@@ -46,7 +46,7 @@ in {
 			cargo
 			dunst
 			feh
-			fuse-common
+			#fuse-common
 			freetype
 			gcc
 			gimp
@@ -56,7 +56,7 @@ in {
 			xdg-desktop-portal-gtk
 			zoxide
 			firefox
-			arduino
+			arduino-ide
 			discord
 			zathura
 			pandoc
@@ -75,13 +75,32 @@ in {
 			dmenu
 			slstatus
 			dunst
-			kubectl
 			networkmanagerapplet 
 			pasystray
 			obsidian
+            gnuplot
+            st
+            nitrogen
+            mpv-unwrapped
+            arandr
 		];
 	};
 	
+    programs.kitty = {
+       enable = true;
+       catppuccin.enable = true;
+       font = {
+           size = 14;
+           name = "Meslo LG L ";
+       };
+       settings = {
+
+           background_opacity = 0.9;
+           confirm_os_window_close = 0;
+           background_blur = 1;
+       };
+
+    };
 	programs.alacritty = {
 		enable = true;
 		catppuccin.enable = true;
@@ -94,38 +113,6 @@ in {
 			};
 			bell.animation = "EaseOutExpo";
 			bell.duration = 0;
-
-		#	colors = {
-		#		bright = {
-		#			black = "0x988BA2";
-		#			blue = "0x96CDFB";
-	#				cyan = "0x89DCEB";
-	#				green = "0xABE9B3";
-	#				magenta = "0xF5C2E7";
-	#				red = "0xF28FAD";
-	#				white = "0xD9E0EE";
-	#				yellow = "0xFAE3B0";
-	#			};
-	#			cursor = {
-	#				cursor = "0xF5E0DC";
-	#				text = "0x1E1D2F";
-	#			};
-	#			normal = {
-	#				black = "0x6E6C7E";
-	#				blue = "0x96CDFB";
-	#				cyan = "0x89DCEB";
-	#				green = "0xABE9B3";
-	#				magenta = "0xF5C2E7";
-	#				red = "0xF28FAD";
-	#				white = "0xD9E0EE";
-	#				yellow = "0xFAE3B0";
-	#			};
-	#			primary = {
-	#				background = "0x1E1D2F";
-	#				foreground = "0xD9E0EE";
-	#			};
-	#		};
-			
 			font = {
 				size = 14;
 				normal.family = "Meslo LG L ";
@@ -146,12 +133,14 @@ services.dunst = {
 	catppuccin.enable = true;
 };
 
- stylix = { #TODO figure out how this thing works
+ /* stylix = { #TODO figure out how this thing works
     targets.gtk.enable = false;
     targets.firefox.enable = false;
-	};
+	}; */
 
-
+programs.ranger = {
+    
+};
 programs.tmux = { enable = true;
 	keyMode = "vi";
 };
@@ -160,5 +149,21 @@ services.picom = {
 	enable = true;
 	vSync = true;
 };
+
+
+wayland.windowManager.hyprland = {
+    
+    enable = true;
+    settings = {
+        
+        "$mod" = "SUPER";
+
+    };
+
+};
+
+
+
+
 
 }
