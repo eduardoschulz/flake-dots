@@ -11,7 +11,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-			../../common.nix
+      ../../common.nix
     ];
 
 	nix = {
@@ -37,13 +37,49 @@ in
 		enable = true;
 		powerOnBoot = true;
 	};
+    
+    boot = {
 
-  boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
+        plymouth = {
+            enable = true;
+            theme = "hexagon";
+            themePackages = with pkgs; [
+# By default we would install all themes
+                (adi1090x-plymouth-themes.override {
+                 selected_themes = [ "hexagon" ];
+                 })
+            ];
+        };
+        loader = {
+            systemd-boot.enable = true;
+            efi.canTouchEfiVariables = true;
+        };
 
-  boot.initrd.luks.devices."luks-701dbd51-f2f6-47a8-8813-187b050f2ab1".device = "/dev/disk/by-uuid/701dbd51-f2f6-47a8-8813-187b050f2ab1";
+        initrd.luks.devices."luks-701dbd51-f2f6-47a8-8813-187b050f2ab1".device = "/dev/disk/by-uuid/701dbd51-f2f6-47a8-8813-187b050f2ab1";
+
+        consoleLogLevel = 0;
+        initrd.verbose = false;
+        kernelParams = [
+            "quiet"
+                "splash"
+                "boot.shell_on_fail"
+                "loglevel=3"
+                "rd.systemd.show_status=false"
+                "rd.udev.log_level=3"
+                "udev.log_priority=3"
+        ];
+# Hide the OS choice for bootloaders.
+# It's still possible to open the bootloader list by pressing any key
+# It will just not appear on screen unless a key is pressed
+        loader.timeout = 0;
+
+    };
+
+
+    # Enable "Silent Boot"
+
   networking.hostName = "nixos"; # Define your hostname.
-
+  programs.hyprland.enable = true;
   services = {
     dbus.enable = true;
     picom.enable = true;
@@ -56,6 +92,7 @@ in
 #			videoDrivers = [ "auto" ];
 			desktopManager.gnome.enable = true;
 			displayManager.gdm.enable = true;	
+            displayManager.gdm.wayland = true;
 			layout = "br";
 			xkbVariant = "thinkpad";
     #  displayManager = {
@@ -226,6 +263,9 @@ in
 		drivers = with pkgs; 
 			[hplip];
 };
+
+
+
 
 	services.tailscale.enable = true;
   # This value determines the NixOS release from which the default
