@@ -3,18 +3,18 @@
 
   inputs = {
     # NixOS official package source, here using the nixos-23.11 branch
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-    stylix = { url = "github:danth/stylix"; };
+#    stylix = { url = "github:danth/stylix"; };
     dwm-flake.url = "github:eduardoschulz/dwm";
-    st.url = "github:eduardoschulz/st";
+    st-flake.url = "github:eduardoschulz/st";
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, stylix, dwm-flake, st, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, dwm-flake, st-flake, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -24,6 +24,9 @@
       lib = nixpkgs.lib;
       dwmOverlay = final: prev: {
         dwm = dwm-flake.defaultPackage.${system};  
+      };
+      stOverlay = final: prev: {
+        st = st-flake.defaultPackage.${system};  
       };
     in {
       nixosConfigurations = {
@@ -53,10 +56,11 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             catppuccin.homeManagerModules.catppuccin
-            stylix.homeManagerModules.stylix
+            #stylix.homeManagerModules.stylix
             desktop/homemanager/home.nix
-{ home.packages = [
-    st          ]; }      
+            { 
+                nixpkgs.overlays = [stOverlay];
+            }      
 
           ];
         };
@@ -65,11 +69,10 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             catppuccin.homeManagerModules.catppuccin
-            stylix.homeManagerModules.stylix
+            # stylix.homeManagerModules.stylix
             laptop/homemanager/home.nix
             {
-              home.packages = 
-                [ st ];
+                nixpkgs.overlays = [stOverlay];
             }
           ];
         };

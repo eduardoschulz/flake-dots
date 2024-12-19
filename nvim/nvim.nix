@@ -22,6 +22,7 @@ programs.neovim = {
 		enable = true;
 		extraPackages = with pkgs; [
 
+            tectonic
 			clang-tools
 			nil
 			asm-lsp
@@ -29,6 +30,8 @@ programs.neovim = {
 			lua-language-server
 			xclip
 			wl-clipboard
+            texlab
+            ltex-ls
 		];
 
 		plugins = with pkgs.vimPlugins; [
