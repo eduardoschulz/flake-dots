@@ -5,7 +5,6 @@ in {
 	
 	imports = [
 		../../nvim/nvim.nix
-        ../hypr.nix
 	];
 
 
@@ -40,7 +39,7 @@ in {
 	home = {
 		username = "${username}";
 		homeDirectory = "/home/${username}";
-		stateVersion = "24.05";
+		stateVersion = "24.11";
 
 		packages = with pkgs; [
 			wget

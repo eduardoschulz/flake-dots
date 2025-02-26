@@ -1,114 +1,111 @@
-{ config, pkgs, ... }:
-let
-  # When using easyCerts=true the IP Address must resolve to the master on creation.
- # So use simply 127.0.0.1 in that case. Otherwise you will have errors like this https://github.com/NixOS/nixpkgs/issues/59364
-  kubeMasterIP = "127.0.0.1";
-  kubeMasterHostname = "api.kube";
-  kubeMasterAPIServerPort = 6443;
-in
+{ config, pkgs, ... }: {
 
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../common.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../common.nix
+  ];
 
-	nix = {
+  nix = {
     settings = {
-       warn-dirty = true;
-       experimental-features = "nix-command flakes";
-       auto-optimise-store = true;
+      warn-dirty = true;
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
     };
   };
 
-	nixpkgs = {
-		config = {
-			allowUnfree = true;
-			allowUnfreePredicate = pkg: builtins.elem (builtins.parseDrvName pkg.name).name ["steam" "steam-run" ];	
-		};	
-    };
-	security = {
-		rtkit.enable = true;
-		polkit.enable = true;
-	};
-
-	hardware.bluetooth = {
-		enable = true;
-		powerOnBoot = true;
-	};
-    
-    boot = {
-
-        plymouth = {
-            enable = true;
-            theme = "hexagon";
-            themePackages = with pkgs; [
-# By default we would install all themes
-                (adi1090x-plymouth-themes.override {
-                 selected_themes = [ "hexagon" ];
-                 })
-            ];
-        };
-        loader = {
-            systemd-boot.enable = true;
-            efi.canTouchEfiVariables = true;
-        };
-
-        initrd.luks.devices."luks-701dbd51-f2f6-47a8-8813-187b050f2ab1".device = "/dev/disk/by-uuid/701dbd51-f2f6-47a8-8813-187b050f2ab1";
-
-        consoleLogLevel = 0;
-        initrd.verbose = false;
-        kernelParams = [
-            "quiet"
-                "splash"
-                "boot.shell_on_fail"
-                "loglevel=3"
-                "rd.systemd.show_status=false"
-                "rd.udev.log_level=3"
-                "udev.log_priority=3"
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg:
+        builtins.elem (builtins.parseDrvName pkg.name).name [
+          "steam"
+          "steam-run"
         ];
-# Hide the OS choice for bootloaders.
-# It's still possible to open the bootloader list by pressing any key
-# It will just not appear on screen unless a key is pressed
-        loader.timeout = 0;
+    };
+  };
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  boot = {
+
+    plymouth = {
+      enable = true;
+      theme = "hexagon";
+      themePackages = with pkgs;
+        [
+          # By default we would install all themes
+          (adi1090x-plymouth-themes.override {
+            selected_themes = [ "hexagon" ];
+          })
+        ];
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
 
+    initrd.luks.devices."luks-701dbd51-f2f6-47a8-8813-187b050f2ab1".device =
+      "/dev/disk/by-uuid/701dbd51-f2f6-47a8-8813-187b050f2ab1";
 
-    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+
+  };
+
+  # Enable "Silent Boot"
 
   networking.hostName = "nixos"; # Define your hostname.
   programs.hyprland.enable = true;
   services = {
     dbus.enable = true;
     picom.enable = true;
-		blueman.enable = true;
-  # Bootloader.
+    blueman.enable = true;
+    # Bootloader.
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
-			libinput.enable = true;
-#			videoDrivers = [ "auto" ];
-			desktopManager.gnome.enable = true;
-			displayManager.gdm.enable = true;	
-            displayManager.gdm.wayland = true;
-			layout = "br";
-			xkbVariant = "thinkpad";
-    #  displayManager = {
-    #    lightdm.enable = true;
-        #setupCommands = ''
-        #  ${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal
-        #'';
-    #    autoLogin = {
-    #      enable = false; 
-    #      user = "eduardo";
-  #      };
-  #    };
+      libinput.enable = true;
+      #			videoDrivers = [ "auto" ];
+      desktopManager.gnome.enable = true;
+     #displayManager.gdm.enable = true;
+      #displayManager.gdm.wayland = true;
+      layout = "br";
+      xkbVariant = "thinkpad";
+      displayManager = {
+          lightdm.enable = true;
+      setupCommands = ''
+        ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
+      '';
+      #    autoLogin = {
+      #      enable = false; 
+      #      user = "eduardo";
+      #      };
+      #    };
+    };
     };
   };
 
-	console.keyMap = "br-abnt2";
+  console.keyMap = "br-abnt2";
 
   networking.hostId = "19499fb6";
 
@@ -134,14 +131,14 @@ in
   };
 
   # Configure keymap in X11
-#  services.xserver = {
-#    enable = true;
-#		layout = "us";
-#    xkbVariant = "";
-#		displayManager.gdm.enable = true;
-#		desktopManager.gnome.enable = true;
-#j		libinput.enable = true;
-# };
+  #  services.xserver = {
+  #    enable = true;
+  #		layout = "us";
+  #    xkbVariant = "";
+  #		displayManager.gdm.enable = true;
+  #		desktopManager.gnome.enable = true;
+  #j		libinput.enable = true;
+  # };
 
   # Enable CUPS to print documents.
 
@@ -171,74 +168,58 @@ in
     extraGroups = [ "networkmanager" "wheel" "video" "docker" "adbusers" ];
   };
 
-  # Allow unfree packages
+  environment.systemPackages = with pkgs; [
+    # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    iperf3
+    git
+    pciutils
+    curl
+    acpi
 
-	
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-		environment.systemPackages = with pkgs; [
-			 # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-				wget
-				iperf3
-				git
-				pciutils
-				steam-run
-				steam
-				curl
-				dwl
-		];
-	
+    steam-run-free
+  ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.mtr.enable = true;
+  services.openssh.enable = true;
 
-  # List services that you want to enable:
+  networking = {
 
-  # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+    firewall.enable = false;
+    /* firewall.allowedTCPPorts = [];
+       firewall.allowedUDPPorts = [];
+    */
+  };
 
-  # Open ports in the firewall.
-   networking.firewall.enable = false;
-   #networking.firewall.allowedTCPPorts = [ 9001 9002 3000 ];
-   #networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-	};	
+  };
 
   virtualisation.libvirtd.enable = true;
   # ld fix
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-		texlab 
-		jre17_minimal
-		jre8
-	# add libs
+    texlab
+    jre17_minimal
+    jre8
+    # add libs
   ];
-  
 
   virtualisation.docker.enable = true;
   networking.usePredictableInterfaceNames = true;
 
- 
-
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -246,34 +227,18 @@ in
     };
   };
 
-	/* services.kubernetes = {
-		 roles = ["master" "node"];
-		 masterAddress = kubeMasterHostname;
-    apiserverAddress = "https://${kubeMasterHostname}:${toString kubeMasterAPIServerPort}";
-    easyCerts = true;
-    apiserver = {
-      securePort = kubeMasterAPIServerPort;
-      advertiseAddress = kubeMasterIP;
-    };
-		addons.dns.enable = true;
-	}; */
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ hplip ];
+  };
 
-	services.printing = {
-		enable = true;
-		drivers = with pkgs; 
-			[hplip];
-};
-
-
-
-
-	services.tailscale.enable = true;
+  services.tailscale.enable = true;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }
