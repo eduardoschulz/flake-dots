@@ -11,7 +11,10 @@ in
     ../homemanager/modules/hypr/monitor.nix
     ../homemanager/modules/hypr/hyprlock.nix
     ../homemanager/modules/hypr/hyprpaper.nix
-
+    ../homemanager/modules/zsh.nix
+    ../homemanager/modules/browsers.nix
+    ../homemanager/modules/term.nix
+    ../homemanager/modules/services.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -35,6 +38,7 @@ in
 
   home = {
     inherit username;
+    sessionVariables.NIXOS_OZONE_WL = "1";
     homeDirectory = "/home/${username}";
     stateVersion = "24.11";
 
@@ -46,25 +50,19 @@ in
       dunst
       feh
       freetype
-      gcc
       gimp
       git
       unzip
       virt-manager
       xdg-desktop-portal-gtk
       zoxide
-      firefox
       arduino-ide
       discord
       zathura
       pandoc
-      texliveFull
       pavucontrol
-      gopls
-      go
       screen
       transmission-gtk
-      librewolf
       htop
       meslo-lg
       vesktop
@@ -74,6 +72,7 @@ in
       slstatus
       networkmanagerapplet
       pasystray
+      libnotify
       obsidian
       gnuplot
       st
@@ -81,9 +80,12 @@ in
       mpv-unwrapped
       arandr
       wofi
-      hyprpaper
       whitesur-cursors
-      chromium
+      hyprpaper
+      ungoogled-chromium
+      hyprpolkitagent
+      wl-clipboard
+      hyprshot
     ];
 
     sessionVariables = {
@@ -97,50 +99,6 @@ in
     '';
   };
 
-  programs.kitty = {
-    enable = true;
-    catppuccin.enable = true;
-    font = {
-      size = 14;
-      name = "Meslo LG L";
-    };
-    settings = {
-      background_opacity = 0.9;
-      confirm_os_window_close = 0;
-      background_blur = 1;
-    };
-  };
-
-  programs.alacritty = {
-    enable = true;
-    catppuccin.enable = true;
-    settings = {
-      window = {
-        opacity = 0.9;
-        blur = true;
-        decorations = "full";
-        dynamic_title = true;
-      };
-      bell = {
-        animation = "EaseOutExpo";
-        duration = 0;
-      };
-      font = {
-        size = 14;
-        normal.family = "Meslo LG L";
-        italic.family = "Meslo LG L";
-        bold.family = "Meslo LG L";
-      };
-      mouse = {
-        hide_when_typing = true;
-      };
-    };
-  };
-
-  services.dunst = {
-    enable = true;
-    catppuccin.enable = true;
-  };
 
   programs.ranger.enable = true;
 
@@ -149,10 +107,6 @@ in
     keyMode = "vi";
   };
 
-  services.picom = {
-    enable = true;
-    vSync = true;
-  };
 
   gtk.cursorTheme = {
     name = "WhiteSur-cursors";
@@ -162,13 +116,5 @@ in
 
   programs.waybar.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "agnoster";
-    };
-  };
 
-  programs.hyprlock.enable = true;
 }

@@ -4,7 +4,6 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../common.nix
-#    ../kubernetes/k8s.nix
   ];
 
   nix = {
@@ -63,7 +62,6 @@
 
   # Bootloader.
 
-  programs.hyprland.enable = true;
   services = {
     dbus.enable = true;
     picom.enable = true;
@@ -108,6 +106,9 @@
 
 
     };
+  };
+  programs.hyprland = {
+    enable = true;
   };
 
   # boot.supportedFilesystems = [ "zfs" ];

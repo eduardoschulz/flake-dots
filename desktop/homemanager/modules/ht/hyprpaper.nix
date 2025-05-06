@@ -5,10 +5,10 @@
         ipc = "on";
 
         preload =
-            [ "/home/eduardo/Pictures/Wallpapers/jap.png"];
+            [ "/home/eduardo/Pictures/Wallpapers/moon.png"];
 
         wallpaper = [
-            ",/home/eduardo/Pictures/Wallpapers/jap.png"
+            ",/home/eduardo/Pictures/Wallpapers/moon.png"
         ];
 
 };
