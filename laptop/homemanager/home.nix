@@ -5,6 +5,8 @@ in {
 	
 	imports = [
 		../../nvim/nvim.nix
+        ./modules/hypr/main.conf
+        ./modules/hypr/binds.nix
 	];
 
 
