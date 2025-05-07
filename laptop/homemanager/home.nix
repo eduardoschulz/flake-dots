@@ -48,7 +48,6 @@ in {
 			cargo
 			dunst
 			feh
-			fuse-common
 			freetype
 			gcc
 			gimp
@@ -85,6 +84,8 @@ in {
 			surf
 			nitrogen
             bemenu
+            hyprpaper
+            hyprlock
 
 		];
 	};
@@ -116,7 +117,7 @@ in {
 
 
 	};
-	
+
 programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -127,11 +128,25 @@ services.dunst = {
 	catppuccin.enable = true;
 };
 
- stylix = { #TODO figure out how this thing works
-    targets.gtk.enable = false;
-    targets.firefox.enable = false;
-	};
+programs.wofi = {
+    enable = true;
+    settings = {
+        show = "drun";
+        width=750;
+        height=400;
+        always_parse_args=true;
+        show_all=false;
+        term="kitty";
+        hide_scroll=true;
+        print_command=true;
+        insensitive=true;
+        columns=2;
+    };
+    catppuccin.enable = true;
 
+   
+
+};
 programs.tmux = { enable = true;
 	keyMode = "vi";
 };

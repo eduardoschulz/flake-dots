@@ -81,27 +81,26 @@
     picom.enable = true;
     blueman.enable = true;
     # Bootloader.
+
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
-      libinput.enable = true;
-      #			videoDrivers = [ "auto" ];
+    #  libinput.enable = true;  
+    #	videoDrivers = [ "auto" ];
       desktopManager.gnome.enable = true;
-     #displayManager.gdm.enable = true;
-      #displayManager.gdm.wayland = true;
       layout = "br";
       xkbVariant = "thinkpad";
       displayManager = {
-          lightdm.enable = true;
-      setupCommands = ''
-        ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
-      '';
+          sddm.enable = true;
+          #lightdm.enable = true;
+   #   setupCommands = ''
+   #     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
+   #   '';
       #    autoLogin = {
       #      enable = false; 
       #      user = "eduardo";
       #      };
-      #    };
-    };
+       };
     };
   };
 
