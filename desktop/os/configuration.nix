@@ -4,7 +4,6 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../common.nix
-#    ../kubernetes/k8s.nix
   ];
 
   nix = {
@@ -63,7 +62,6 @@
 
   # Bootloader.
 
-  programs.hyprland.enable = true;
   services = {
     dbus.enable = true;
     picom.enable = true;
@@ -90,7 +88,7 @@
 
       layout = "us";
       desktopManager.gnome.enable = true;
-      displayManager = {
+      /* displayManager = {
         lightdm.enable = true;
         #setupCommands = ''
         #  ${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal
@@ -99,8 +97,18 @@
           enable = false;
           user = "eduardo";
         };
-      };
+      }; */
+        displayManager.sddm = {
+            enable = true;
+            theme = "purple_leaves";
+
+        };
+
+
     };
+  };
+  programs.hyprland = {
+    enable = true;
   };
 
   # boot.supportedFilesystems = [ "zfs" ];
@@ -184,6 +192,7 @@
     steam
     jre_minimal
     lact
+    sddm-astronaut
   ];
 
   # dwm.packages.${pkgs.system}.dwm
