@@ -6,6 +6,7 @@ in {
 	imports = [
 		../../nvim/nvim.nix
         ./modules/hypr/main.conf
+        ./modules/hypr/hyprpaper.nix 
         ./modules/hypr/binds.nix
 	];
 
@@ -27,13 +28,13 @@ in {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
     };
-		overlays = [
+		/* overlays = [
 				(final: prev: {
 					slstatus = prev.slstatus.overrideAttrs (old: {src = /home/eduardo/.config/slstatus;});
 					st = prev.st.overrideAttrs (old: {src = /home/eduardo/.config/st;});
 					surf = prev.surf.overrideAttrs (old: {src = /home/eduardo/.config/surf;});
 				})
-			];
+			]; */
 
 			
   };	
@@ -51,7 +52,6 @@ in {
 			dunst
 			feh
 			freetype
-			gcc
 			gimp
 			git
 			unzip
@@ -63,10 +63,7 @@ in {
 			discord
 			zathura
 			pandoc
-			texliveFull
 			pavucontrol
-			gopls
-			go
 			screen
 			transmission-gtk
 			librewolf
@@ -87,6 +84,7 @@ in {
 			nitrogen
             bemenu
             hyprpaper
+            waybar
             hyprlock
 
 		];
@@ -120,11 +118,6 @@ in {
 
 	};
 
-programs.waybar = {
-    enable = true;
-    systemd.enable = true;
-
-};
 services.dunst = {
 	enable = true;
 	catppuccin.enable = true;
@@ -144,7 +137,6 @@ programs.wofi = {
         insensitive=true;
         columns=2;
     };
-    catppuccin.enable = true;
 
    
 
