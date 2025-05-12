@@ -82,6 +82,10 @@ programs.neovim = {
 				plugin = telescope-nvim;
 				config = toLuaFile ./plugin/telescope.lua;
 			}
+            {
+                plugin = chadtree;
+                config = toLuaFile ./plugin/chadtree.lua;
+            }
 			/* {
 				plugin = luasnip;
 				config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
