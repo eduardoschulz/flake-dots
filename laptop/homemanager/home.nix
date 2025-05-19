@@ -86,6 +86,7 @@ in {
             hyprpaper
             waybar
             hyprlock
+            ungoogled-chromium
 
 		];
 	};
