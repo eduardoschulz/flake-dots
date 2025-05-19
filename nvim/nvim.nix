@@ -87,10 +87,6 @@ programs.neovim = {
                 config = toLuaFile ./plugin/chadtree.lua;
             }
             
-            {
-                plugin = neoproj;
-                config = toLuaFile ./plugin/neoproj.lua;
-            }
 
 			/* {
 				plugin = luasnip;
