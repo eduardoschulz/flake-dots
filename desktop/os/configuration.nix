@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
   ];
+systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
   nix = {
     settings = {
