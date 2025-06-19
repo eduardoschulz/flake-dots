@@ -2,14 +2,15 @@
   description = "My NixOS configuration flake";
 
   inputs = {
-    # NixOS official package source, here using the nixos-23.11 branch
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    # NixOS official package source, here using the nixos-25.05 branch
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     catppuccin.url = "github:catppuccin/nix";
-#    stylix = { url = "github:danth/stylix"; };
     dwm-flake.url = "github:eduardoschulz/dwm";
     st-flake.url = "github:eduardoschulz/st";
   };
@@ -56,7 +57,6 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             catppuccin.homeManagerModules.catppuccin
-            #stylix.homeManagerModules.stylix
             desktop/homemanager/home.nix
             { 
                 nixpkgs.overlays = [stOverlay];
@@ -69,7 +69,6 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             catppuccin.homeManagerModules.catppuccin
-            # stylix.homeManagerModules.stylix
             laptop/homemanager/home.nix
             {
                 nixpkgs.overlays = [stOverlay];

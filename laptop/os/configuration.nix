@@ -2,7 +2,6 @@
 
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../common.nix
   ];
 
   nix = {
@@ -179,6 +178,13 @@
     steam-run-free
   ];
 
+  fonts = {
+    packages = with pkgs; [
+        nerd-fonts.code-new-roman
+        nerd-fonts.symbols-only
+    ];
+
+  };
   programs.mtr.enable = true;
   services.openssh.enable = true;
 

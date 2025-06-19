@@ -3,7 +3,6 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../common.nix
     ./modules/zerotier/zerotier.nix
   ];
 
@@ -68,6 +67,16 @@
     picom.enable = true;
 
 
+  pulseaudio.enable = false;
+
+    displayManager.sddm = {
+        enable = true;
+        theme = "purple_leaves";
+
+    };
+
+
+
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
@@ -87,7 +96,7 @@
         EndSection
       '';
 
-      layout = "us";
+      xkb.layout = "us";
       desktopManager.gnome.enable = true;
       /* displayManager = {
         lightdm.enable = true;
@@ -99,11 +108,6 @@
           user = "eduardo";
         };
       }; */
-        displayManager.sddm = {
-            enable = true;
-            theme = "purple_leaves";
-
-        };
 
 
     };
@@ -153,7 +157,6 @@
 
   # Enable sound with pipewire.
   #sound.enable = true;
-  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -195,6 +198,13 @@
     lact
     sddm-astronaut
   ];
+  fonts = {
+    packages = with pkgs; [
+        nerd-fonts.code-new-roman
+        nerd-fonts.symbols-only
+    ];
+
+  };
 
   # dwm.packages.${pkgs.system}.dwm
   # Some programs need SUID wrappers, can be configured further or are
