@@ -53,10 +53,10 @@ require('lspconfig').ltex.setup({
     settings = {
         ltex = {
             language = "pt-BR",
-            enabled = { "bibtex", "markdown", "tex", "restructuredtext", "latex", "html", "xhtml", "yaml", "toml" }
+            enabled = { "bibtex", "markdown", "tex", "restructuredtext", "latex" }
         },
     },
-    filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context", "html", "xhtml", "mail", "toml", "yaml" }
+    filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context"}
 })
 
 -- texlab setup
