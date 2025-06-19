@@ -104,6 +104,7 @@ programs.neovim = {
 			catppuccin-nvim
 			cmp-path
 			cmp-buffer
+            
 		];
 		
 		extraLuaConfig = ''

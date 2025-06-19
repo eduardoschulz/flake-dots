@@ -25,6 +25,11 @@ lsp_zero.extend_lspconfig({
   capabilities = capabilities,
 })
 
+require('lspconfig').pyright.setup({
+	on_attach = lsp_attach,
+	capabilities = capabilities, 
+})
+
 require('lspconfig').marksman.setup({
 	on_attach = lsp_attach,
 	capabilities = capabilities, 
