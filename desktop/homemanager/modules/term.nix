@@ -11,6 +11,8 @@
       confirm_os_window_close = 0;
       background_blur = 1;
     };
+
+    shellIntegration.enableZshIntegration = true;
   };
 
   programs.alacritty = {

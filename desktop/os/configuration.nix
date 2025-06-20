@@ -179,8 +179,10 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
     isNormalUser = true;
     description = "Eduardo";
     extraGroups = [ "networkmanager" "wheel" "video" "dialout" "docker" "adbusers" ];
+    shell = pkgs.zsh;
   };
 
+    programs.zsh.enable = true;
   # Allow unfree packages
 
   # List packages installed in system profile. To search, run:
