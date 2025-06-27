@@ -1,33 +1,54 @@
-# Personal NixOS and Home-Manager configuration files 
+# 🐧 NixOS & Home Manager Configuration
+[![Made with Nix](https://img.shields.io/badge/Made%20with-Nix-5277C3?logo=nixos&logoColor=white)](https://nixos.org)
+[![Home Manager](https://img.shields.io/badge/Managed%20by-Home%20Manager-5E81AC?logo=linux&logoColor=white)](https://nix-community.github.io/home-manager/)
+[![Neovim Config](https://img.shields.io/badge/Editor-Neovim-57A143?logo=neovim&logoColor=white)](https://neovim.io)
 
 
-## Repository Structure
-```
-desktop             # NixOS and HomeManager configuration for my Desktop
-laptop              # NixOS and HomeManager configuration for my Laptop
-nvim                # Configuration imported by both desktop and laptop homemanager
+---
+This repository contains my personal configurations for **NixOS** and **Home Manager**, tailored for both desktop and laptop environments. It also includes shared Neovim settings.
 
-```
-## Desktop
-```shell
-sudo nixos-rebuild --flake .#desktop     #this will build nixos and dwm 
-nix build .#hmConfig.desktop.activationPackage  #this will build only homemanager
+### 🧩 Configured Software
+
+This setup comes with several pre-configured tools for a minimal and efficient Linux experience:
+
+* **Hyprland Suite**:
+
+  * `hyprland` – dynamic Wayland compositor
+  * `hyprlock` – screen locker
+  * `hyprpaper` – wallpaper daemon
+  * `hyprschot` – screenshot utility
+* **Kitty** – fast, GPU-based terminal emulator
+* **Neovim** – configured with plugins and LSP support
+* **Wofi** – application launcher
+* **Dunst** – notification daemon
+* **Zsh** – shell with plugins and themes
+* **Others** – fonts, themes, media tools, system utilities...
+
+Everything is managed declaratively via Home Manager.
+
+---
+## ⚙️ Usage
+
+### 🖥️ Desktop
+
+```bash
+# Rebuild full system with flake
+sudo nixos-rebuild --flake .#desktop
+
+# Build and activate only Home Manager
+nix build .#hmConfig.desktop.activationPackage
+./result/activate
+````
+
+### 💻 Laptop
+
+```bash
+# Rebuild full system with flake
+sudo nixos-rebuild --flake .#laptop
+
+# Build and activate only Home Manager
+nix build .#hmConfig.laptop.activationPackage
 ./result/activate
 ```
 
 
-## Laptop
-```shell
-sudo nixos-rebuild --flake .#laptop    #this will build nixos and dwm 
-nix build .#hmConfig.laptop.activationPackage  #this will build only homemanager
-./result/activate
-```
-
-
-# TODO
-- [x] Make homemanager import a nvim.nix file to install dependencies
-- [x] Add spell checking
-    - [ ] Find a better plugin. feels laggy.
-- [ - ] Add dwm and st as submodules of this repo
-- [ ] Fix Treesitter
-- [ ] Include some templates for development environments
