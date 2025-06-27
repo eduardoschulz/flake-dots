@@ -31,6 +31,7 @@ programs.neovim = {
 			xclip
 			wl-clipboard
             texlab
+            ripgrep
             ltex-ls
 		];
 
@@ -85,6 +86,13 @@ programs.neovim = {
             {
                 plugin = chadtree;
                 config = toLuaFile ./plugin/chadtree.lua;
+            }
+            {
+                plugin = telescope-nvim;
+                config = toLuaFile ./plugin/telescope.lua;
+            }
+            {
+                plugin = nvim-cokeline;
             }
             
 
