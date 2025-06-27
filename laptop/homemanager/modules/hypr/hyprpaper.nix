@@ -1,18 +1,18 @@
 {
-    services.hyprpaper = {
-        enable = true;
-        settings = {
-        ipc = "on";
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "on";
 
-        preload =
-            [ "/home/eduardo/.wal.png"];
+      preload =
+        [ "/home/eduardo/.wal.png" ];
 
-        wallpaper = [
-            ",/home/eduardo/.wal.png"
-        ];
+      wallpaper = [
+        ",/home/eduardo/.wal.png"
+      ];
 
-};
     };
+  };
 
 
 

@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
 
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -84,22 +85,22 @@
     xserver = {
       enable = true;
       windowManager.dwm.enable = true;
-    #  libinput.enable = true;  
-    #	videoDrivers = [ "auto" ];
+      #  libinput.enable = true;  
+      #	videoDrivers = [ "auto" ];
       desktopManager.gnome.enable = true;
       layout = "br";
       xkbVariant = "thinkpad";
       displayManager = {
-          sddm.enable = true;
-          #lightdm.enable = true;
-   #   setupCommands = ''
-   #     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
-   #   '';
-      #    autoLogin = {
-      #      enable = false; 
-      #      user = "eduardo";
-      #      };
-       };
+        sddm.enable = true;
+        #lightdm.enable = true;
+        #   setupCommands = ''
+        #     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
+        #   '';
+        #    autoLogin = {
+        #      enable = false; 
+        #      user = "eduardo";
+        #      };
+      };
     };
   };
 
@@ -180,8 +181,8 @@
 
   fonts = {
     packages = with pkgs; [
-        nerd-fonts.code-new-roman
-        nerd-fonts.symbols-only
+      nerd-fonts.code-new-roman
+      nerd-fonts.symbols-only
     ];
 
   };

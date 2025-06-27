@@ -5,35 +5,37 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" "nouveau" ];
-	boot.kernelParams = [ "video=DP-1:2560x1080@74.99" "video=DP-2:1920x1080@60" "video=HDMI-A-1:1024x600@60" ];
+  boot.kernelParams = [ "video=DP-1:2560x1080@74.99" "video=DP-2:1920x1080@60" "video=HDMI-A-1:1024x600@60" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.forceImportRoot = false;
 
-	boot.extraModprobeConfig = ''
-		 options zfs zfs_arc_max=4294967296 
-		 options zfs zfs_arc_min=1073741824
-	'';
+  boot.extraModprobeConfig = ''
+    		 options zfs zfs_arc_max=4294967296 
+    		 options zfs zfs_arc_min=1073741824
+    	'';
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/50b68d1a-c22e-4e3e-ad6a-0dec215ddcd6";
+    {
+      device = "/dev/disk/by-uuid/50b68d1a-c22e-4e3e-ad6a-0dec215ddcd6";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/80DD-FF56";
+    {
+      device = "/dev/disk/by-uuid/80DD-FF56";
       fsType = "vfat";
     };
-  
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/9d78eb4e-062b-4886-8683-6f504f5f35f0"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/9d78eb4e-062b-4886-8683-6f504f5f35f0"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

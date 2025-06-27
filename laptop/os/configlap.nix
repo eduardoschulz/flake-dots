@@ -1,4 +1,3 @@
-
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -6,29 +5,30 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-	nix = {
-		settings = {
-		warn-dirty = true;
-		experimental-features = "nix-command flakes";
-		auto-optimise-store = true;
-		};
-	};
+  nix = {
+    settings = {
+      warn-dirty = true;
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+    };
+  };
 
-	nixpkgs = {
-		config = {
-			allowUnfree = true;
-			allowUnfreePredicate = pkg: builtins.elem (builtins.parseDrvName pkg.name).name ["steam" "steam-run" ];	
-		};	
-		overlays = [
-			(final: prev: {
-				dwm = prev.dwm.overrideAttrs (old: {src = /home/eduardo/.config/dwm;});
-				})
-			];
-	};
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg: builtins.elem (builtins.parseDrvName pkg.name).name [ "steam" "steam-run" ];
+    };
+    overlays = [
+      (final: prev: {
+        dwm = prev.dwm.overrideAttrs (old: { src = /home/eduardo/.config/dwm; });
+      })
+    ];
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -43,14 +43,14 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-	hardware.opengl.extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      libvdpau-va-gl
-    ];
-	hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
-	hardware.opengl.driSupport = true; # This is already enabled by default
-	hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-media-driver # LIBVA_DRIVER_NAME=iHD
+    intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+    libvdpau-va-gl
+  ];
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
+  hardware.opengl.driSupport = true; # This is already enabled by default
+  hardware.opengl.driSupport32Bit = true;
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
@@ -69,14 +69,14 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-	security.doas.enable = true;
+  security.doas.enable = true;
 
 
-	services.xserver = {
-		enable = true;
-		displayManager.gdm.enable = true;
-		desktopManager.gnome.enable = true;
-		windowManager.dwm.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    windowManager.dwm.enable = true;
     layout = "br";
     xkbVariant = "thinkpad";
   };
@@ -113,35 +113,35 @@
     isNormalUser = true;
     description = "Eduardo";
     extraGroups = [
-		"networkmanager"
-		"wheel"
-		"qemu"
-		"kvm"
-		"libvirtd"
-		"sshd"
-		"docker"
-		"audio"
-		"video"
-		"adbusers"
-		];
+      "networkmanager"
+      "wheel"
+      "qemu"
+      "kvm"
+      "libvirtd"
+      "sshd"
+      "docker"
+      "audio"
+      "video"
+      "adbusers"
+    ];
   };
 
 
-	programs.steam = {
-		enable = true;
-		remotePlay.openFirewall = true;
-		dedicatedServer.openFirewall = true;
-	};
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
-		 vim
-     home-manager
-		 steam-run
-		 steam
-		 dwl
+    vim
+    home-manager
+    steam-run
+    steam
+    dwl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -156,26 +156,26 @@
     defaultEditor = true;
   };
 
-	programs.nix-ld = {
-		enable = true;
-		libraries = with pkgs; [
-			curl
-			clang-tools
-			jdk
-			#add missing dynamic libraries for unpacked prgrams here.
-		];
-	};
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      curl
+      clang-tools
+      jdk
+      #add missing dynamic libraries for unpacked prgrams here.
+    ];
+  };
 
-	virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
-	virtualisation.libvirtd.enable = true;
-	programs.virt-manager = {
-      enable = true;
-      };
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager = {
+    enable = true;
+  };
 
 
 
-	# hosts/chrysalis/configuration.nix
+  # hosts/chrysalis/configuration.nix
   services.prometheus = {
     exporters = {
       node = {
@@ -185,7 +185,7 @@
       };
     };
 
-		scrapeConfigs = [
+    scrapeConfigs = [
       {
         job_name = "laptop";
         static_configs = [{
@@ -196,23 +196,23 @@
 
   };
 
-	programs.adb.enable = true;
-	
-#  nixpkgs.texlive.combined.scheme-medium;
+  programs.adb.enable = true;
+
+  #  nixpkgs.texlive.combined.scheme-medium;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
-   networking.firewall.allowedTCPPorts = [ 9002 ];
-   networking.firewall.allowedUDPPorts = [ 5002 ];
+  networking.firewall.allowedTCPPorts = [ 9002 ];
+  networking.firewall.allowedUDPPorts = [ 5002 ];
   # Or disable the firewall altogether.
-   networking.firewall.enable = false;
-	 services.k3s = {
-		 enable = true;
-		 role = "server";
-		 clusterInit = true;
+  networking.firewall.enable = false;
+  services.k3s = {
+    enable = true;
+    role = "server";
+    clusterInit = true;
   };
 
   # This value determines the NixOS release from which the default

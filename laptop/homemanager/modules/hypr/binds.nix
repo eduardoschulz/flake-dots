@@ -1,5 +1,5 @@
 {
- wayland.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = {
     "$terminal" = "alacritty";
     "$fileManager" = "dolphin";
     "$menu" = "wofi --show drun";
@@ -18,8 +18,8 @@
       "$mainMod, d, layoutmsg, orientationleft"
       "$mainMod, i, layoutmsg, orientationtop"
 
-/*      screenshot tool configuration  */
-      "$mainMod SHIFT, PRINT, exec, hyprshot -m region" 
+      /*      screenshot tool configuration  */
+      "$mainMod SHIFT, PRINT, exec, hyprshot -m region"
 
       " , PRINT, exec, hyprshot -m output"
 

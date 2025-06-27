@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
   ];
-systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
+  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
   nix = {
     settings = {
@@ -68,11 +69,11 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
     picom.enable = true;
 
 
-  pulseaudio.enable = false;
+    pulseaudio.enable = false;
 
     displayManager.sddm = {
-        enable = true;
-        theme = "purple_leaves";
+      enable = true;
+      theme = "purple_leaves";
 
     };
 
@@ -182,7 +183,7 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
     shell = pkgs.zsh;
   };
 
-    programs.zsh.enable = true;
+  programs.zsh.enable = true;
   # Allow unfree packages
 
   # List packages installed in system profile. To search, run:
@@ -203,8 +204,8 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   ];
   fonts = {
     packages = with pkgs; [
-        nerd-fonts.code-new-roman
-        nerd-fonts.symbols-only
+      nerd-fonts.code-new-roman
+      nerd-fonts.symbols-only
     ];
 
   };
@@ -264,8 +265,8 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
         http_port = 3000;
         # Grafana needs to know on which domain and URL it's running
         #domain = "your.domain";
-      #  root_url =
-      #    "https://core.casa/grafana/"; # Not needed if it is `https://your.domain/`
+        #  root_url =
+        #    "https://core.casa/grafana/"; # Not needed if it is `https://your.domain/`
         serve_from_sub_path = true;
 
       };
@@ -300,7 +301,7 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   services.prometheus = {
     enable = true;
     globalConfig.scrape_interval = "5s"; # "1m"
-     exporters = {
+    exporters = {
       node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
@@ -339,11 +340,11 @@ systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
     enable = true;
     port = 9000;
     settings = {
-        WebService = {
-            AllowUnencrypted = true;
-        };
-
+      WebService = {
+        AllowUnencrypted = true;
       };
+
+    };
   };
 
   services.tailscale.enable = true;

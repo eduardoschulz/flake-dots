@@ -1,19 +1,19 @@
 {
-wayland.windowManager.hyprland.enable = true;
-wayland.windowManager.hyprland.xwayland.enable = true;
-wayland.windowManager.hyprland.settings = {
-  "$mod" = "ALT";
-  input = {
-    kb_layout = "br";
-    kb_variant = "thinkpad";
+  wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.xwayland.enable = true;
+  wayland.windowManager.hyprland.settings = {
+    "$mod" = "ALT";
+    input = {
+      kb_layout = "br";
+      kb_variant = "thinkpad";
 
-    follow_mouse = 1;
-    sensitivity = 0;
-    touchpad = {
-      natural_scroll = false;
+      follow_mouse = 1;
+      sensitivity = 0;
+      touchpad = {
+        natural_scroll = false;
+      };
     };
-   };
-  animations = {
+    animations = {
       enabled = true;
       animation = [
         "border, 1, 2, default"
@@ -40,64 +40,65 @@ wayland.windowManager.hyprland.settings = {
         popups = true;
         popups_ignorealpha = 0.2;
       };
-      };
+    };
 
-  general = {
-    layout = "master";
+    general = {
+      layout = "master";
 
-  };
+    };
 
-  master = {
-   # new_is_master = true;
-    no_gaps_when_only = true;
+    master = {
+      # new_is_master = true;
+      no_gaps_when_only = true;
 
-  };
-  gestures = {
-    workspace_swipe = false; 
-  };
+    };
+    gestures = {
+      workspace_swipe = false;
+    };
 
 
-  bind =
-    [
-      # Basic bindings
-      "$mod SHIFT, C, killactive"      # Kill active window
-#      "$mod, F, exec, librewolf"   # Open Firefox
-      "$mod, P, exec, bemenu-run"   # Open Firefox
-      "$mod SHIFT, return, exec, alacritty" # Open Alacritty
-      "$mod, return, layoutmsg, swapwithmaster"
-      "$mod, h, resizeactive, -15 0"
-      "$mod, l, resizeactive, 15 0"
-      "$mod, f, togglefloating"
-      "$mod, m, fullscreen"
-      "$mod, mouse:273, movewindow"
-#      "$mod, mouse:272, exec, $(hyprctl -j activewindow | jq '.floating') || hyprctl dispatch togglefloating"
-      "$mod, mouse:272, exec, hyprctl dispatch movewindowpixel exact $(hyprctl -j cursorpos | jq -r '[.x, .y] | @csv' | tr ',' ' ')"
-      ", Print, exec, grimblast copy area"  # Screenshot
-    ]
-    ++ (
-      # Workspaces
-      # Bind $mod + [shift +] {1..9} to [move to] workspace {1..9}
-      builtins.concatLists (builtins.genList (i:
-          let ws = i + 1;
-          in [
-            "$mod, code:1${toString i}, workspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-          ]
-        )
-        9)
-    )
-    ++ (
-      # dwm-style window management binds
+    bind =
       [
-        # Close window (Mod + Shift + Q)
-        "$mod SHIFT, Q, killactive"
+        # Basic bindings
+        "$mod SHIFT, C, killactive" # Kill active window
+        #      "$mod, F, exec, librewolf"   # Open Firefox
+        "$mod, P, exec, bemenu-run" # Open Firefox
+        "$mod SHIFT, return, exec, alacritty" # Open Alacritty
+        "$mod, return, layoutmsg, swapwithmaster"
+        "$mod, h, resizeactive, -15 0"
+        "$mod, l, resizeactive, 15 0"
+        "$mod, f, togglefloating"
+        "$mod, m, fullscreen"
+        "$mod, mouse:273, movewindow"
+        #      "$mod, mouse:272, exec, $(hyprctl -j activewindow | jq '.floating') || hyprctl dispatch togglefloating"
+        "$mod, mouse:272, exec, hyprctl dispatch movewindowpixel exact $(hyprctl -j cursorpos | jq -r '[.x, .y] | @csv' | tr ',' ' ')"
+        ", Print, exec, grimblast copy area" # Screenshot
+      ]
+      ++ (
+        # Workspaces
+        # Bind $mod + [shift +] {1..9} to [move to] workspace {1..9}
+        builtins.concatLists (builtins.genList
+          (i:
+            let ws = i + 1;
+            in [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          )
+          9)
+      )
+      ++ (
+        # dwm-style window management binds
+        [
+          # Close window (Mod + Shift + Q)
+          "$mod SHIFT, Q, killactive"
 
-        # Focus next/previous window (Mod + J/K)
-        "$mod, J, cyclenext, next"
-        "$mod, K, cyclenext, prev"
+          # Focus next/previous window (Mod + J/K)
+          "$mod, J, cyclenext, next"
+          "$mod, K, cyclenext, prev"
 
-             ]
-    );
+        ]
+      );
 
-};
+  };
 }

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   # When using easyCerts=true the IP Address must resolve to the master on creation.
- # So use simply 127.0.0.1 in that case. Otherwise you will have errors like this https://github.com/NixOS/nixpkgs/issues/59364
+  # So use simply 127.0.0.1 in that case. Otherwise you will have errors like this https://github.com/NixOS/nixpkgs/issues/59364
   kubeMasterIP = "192.168.0.139";
   kubeMasterHostname = "api.kube";
   kubeMasterAPIServerPort = 6443;
@@ -21,7 +21,7 @@ in
     enable = true;
   };
   services.kubernetes = {
-    roles = ["master" "node"];
+    roles = [ "master" "node" ];
     masterAddress = kubeMasterHostname;
     apiserverAddress = "https://${kubeMasterHostname}:${toString kubeMasterAPIServerPort}";
     easyCerts = true;
@@ -35,18 +35,18 @@ in
 
     # needed if you use swap
     kubelet.extraOpts = ''
-            --container-runtime-endpoint=unix:///run/containerd/containerd.sock"
-            --fail-swap-on=false
+      --container-runtime-endpoint=unix:///run/containerd/containerd.sock"
+      --fail-swap-on=false
     '';
 
 
   };
 
-    /* services.flannel.backend = {
+  /* services.flannel.backend = {
         Type = "host-gw";
     }; */
 
-    services.homepage-dashboard.kubernetes = {
-        enable = true;
-    };
+  services.homepage-dashboard.kubernetes = {
+    enable = true;
+  };
 }
