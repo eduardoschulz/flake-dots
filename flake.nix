@@ -24,19 +24,21 @@
       };
       lib = nixpkgs.lib;
       dwmOverlay = final: prev: {
-        dwm = dwm-flake.defaultPackage.${system};  
+        dwm = dwm-flake.defaultPackage.${system};
       };
       stOverlay = final: prev: {
-        st = st-flake.defaultPackage.${system};  
+        st = st-flake.defaultPackage.${system};
       };
-    in {
+    in
+    {
+      formatter.${system} = pkgs.nixpkgs-fmt;
       nixosConfigurations = {
         desktop = lib.nixosSystem {
           inherit system;
           modules = [
             desktop/os/configuration.nix
             {
-                nixpkgs.overlays = [dwmOverlay];
+              nixpkgs.overlays = [ dwmOverlay ];
             }
           ];
         };
@@ -46,7 +48,7 @@
           modules = [
             laptop/os/configuration.nix
             {
-                nixpkgs.overlays = [dwmOverlay ];
+              nixpkgs.overlays = [ dwmOverlay ];
             }
           ];
         };
@@ -58,9 +60,9 @@
           modules = [
             catppuccin.homeManagerModules.catppuccin
             desktop/homemanager/home.nix
-            { 
-                nixpkgs.overlays = [stOverlay];
-            }      
+            {
+              nixpkgs.overlays = [ stOverlay ];
+            }
 
           ];
         };
@@ -71,7 +73,7 @@
             catppuccin.homeManagerModules.catppuccin
             laptop/homemanager/home.nix
             {
-                nixpkgs.overlays = [stOverlay];
+              nixpkgs.overlays = [ stOverlay ];
             }
           ];
         };
