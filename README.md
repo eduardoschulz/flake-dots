@@ -4,7 +4,7 @@
 [![Neovim Config](https://img.shields.io/badge/Editor-Neovim-57A143?logo=neovim&logoColor=white)](https://neovim.io)
 
 <p align="center">
-  <img src=".github/imgs/screenshot.png" alt="Screenshot" width="854" height="360"/>
+  <img src=".github/imgs/screenshot.png" alt="Screenshot" width="auto" />
 </p>
 
 ---
