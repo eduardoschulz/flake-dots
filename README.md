@@ -3,6 +3,9 @@
 [![Home Manager](https://img.shields.io/badge/Managed%20by-Home%20Manager-5E81AC?logo=linux&logoColor=white)](https://nix-community.github.io/home-manager/)
 [![Neovim Config](https://img.shields.io/badge/Editor-Neovim-57A143?logo=neovim&logoColor=white)](https://neovim.io)
 
+<p align="center">
+  <img src=".github/img/screenshot.png" alt="Screenshot" width="600"/>
+</p>
 
 ---
 This repository contains my personal configurations for **NixOS** and **Home Manager**, tailored for both desktop and laptop environments. It also includes shared Neovim settings.
