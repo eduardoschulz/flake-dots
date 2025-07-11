@@ -53,6 +53,14 @@
           ];
         };
 
+        server  = lib.nixosSystem {
+          inherit system;
+          modules = [
+            server/os/configuration.nix
+            {
+            }
+          ];
+        };
       };
       hmConfig = {
         desktop = home-manager.lib.homeManagerConfiguration {
@@ -63,7 +71,15 @@
             {
               nixpkgs.overlays = [ stOverlay ];
             }
+          ];
+        };
 
+        server = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          modules = [
+            server/homemanager/home.nix
+            {
+            }
           ];
         };
 
