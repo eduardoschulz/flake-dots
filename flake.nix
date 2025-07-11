@@ -53,12 +53,11 @@
           ];
         };
 
-        server  = lib.nixosSystem {
+        server = lib.nixosSystem {
           inherit system;
           modules = [
             server/os/configuration.nix
-            {
-            }
+            { }
           ];
         };
       };
@@ -78,8 +77,7 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             server/homemanager/home.nix
-            {
-            }
+            { }
           ];
         };
 

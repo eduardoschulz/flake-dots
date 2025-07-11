@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
@@ -14,19 +15,20 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2afd07fd-b667-4fdd-8add-52038f7a65bc";
+    {
+      device = "/dev/disk/by-uuid/2afd07fd-b667-4fdd-8add-52038f7a65bc";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A8CD-CCA1";
+    {
+      device = "/dev/disk/by-uuid/A8CD-CCA1";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/88234ad6-376e-4d7f-8223-2a98c59ac096"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/88234ad6-376e-4d7f-8223-2a98c59ac096"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -35,8 +37,8 @@
   networking.usePredictableInterfaceNames = true;
   networking.useDHCP = lib.mkDefault true;
   networking.interfaces.enp3s0.wakeOnLan = {
-	enable = true;
-	policy = [ "magic" ];
+    enable = true;
+    policy = [ "magic" ];
   };
   #networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
 

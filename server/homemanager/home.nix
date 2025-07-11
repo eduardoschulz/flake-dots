@@ -34,8 +34,8 @@ in
     ];
 
     programs.tmux = {
-	    enable = true;
-	    keyMode = "vi";
+      enable = true;
+      keyMode = "vi";
     };
 
-}
+  }
