@@ -4,9 +4,9 @@
     enable = true;
     openFirewall = true;
     settings = {
-        WebService = {
-          AllowUnencrypted = true;
-        };
+      WebService = {
+        AllowUnencrypted = true;
+      };
     };
   };
 

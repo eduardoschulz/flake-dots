@@ -1,5 +1,5 @@
 /*
-  	Configuration for Desktop and Laptop Neovim.
+   	Configuration for Desktop and Laptop Neovim.
 */
 { pkgs, ... }:
 let
@@ -97,9 +97,9 @@ in
 
 
       /* {
-                            				plugin = luasnip;
-                            				config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
-                      			} */
+                                				plugin = luasnip;
+                                				config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
+                         			} */
 
       telescope-file-browser-nvim
       #			nvim-treesitter.withAllGrammars
