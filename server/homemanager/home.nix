@@ -33,8 +33,8 @@ in
     packages = with pkgs; [
     ];
   };
-    programs.tmux = {
-      enable = true;
-      keyMode = "vi";
-    };
- }
+  programs.tmux = {
+    enable = true;
+    keyMode = "vi";
+  };
+}

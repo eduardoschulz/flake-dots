@@ -31,12 +31,12 @@ in
       allowUnfreePredicate = (_: true);
     };
     /* overlays = [
-              				(final: prev: {
-                 					slstatus = prev.slstatus.overrideAttrs (old: {src = /home/eduardo/.config/slstatus;});
-                 					st = prev.st.overrideAttrs (old: {src = /home/eduardo/.config/st;});
-                 					surf = prev.surf.overrideAttrs (old: {src = /home/eduardo/.config/surf;});
-              				})
-           			]; */
+                  				(final: prev: {
+                      					slstatus = prev.slstatus.overrideAttrs (old: {src = /home/eduardo/.config/slstatus;});
+                      					st = prev.st.overrideAttrs (old: {src = /home/eduardo/.config/st;});
+                      					surf = prev.surf.overrideAttrs (old: {src = /home/eduardo/.config/surf;});
+                  				})
+              			]; */
 
 
   };
