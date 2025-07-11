@@ -97,12 +97,12 @@ in
 
 
       /* {
-                                    				plugin = luasnip;
-                                    				config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
-                            			} */
+         plugin = luasnip;
+         config = toLua "require('luasnip.loaders.from_vscode').lazy_load()";
+      } */
 
       telescope-file-browser-nvim
-      #			nvim-treesitter.withAllGrammars
+      #nvim-treesitter.withAllGrammars
       nvim-treesitter-textobjects
       nvim-treesitter-endwise
       luasnip
