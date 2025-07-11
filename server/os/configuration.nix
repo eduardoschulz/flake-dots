@@ -12,10 +12,16 @@
 
   networking.hostName = "nixserver"; # Define your hostname.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
+  nix = {
+    settings = {
+      warn-dirty = true;
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+    };
+  };
   # Enable the X11 windowing system.
   services.xserver.enable = false;
 
