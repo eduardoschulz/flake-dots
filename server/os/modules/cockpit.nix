@@ -1,0 +1,9 @@
+{
+
+    services.cockpit = {
+        enable = true;
+
+
+    };
+
+}

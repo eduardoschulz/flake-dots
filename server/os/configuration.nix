@@ -5,6 +5,9 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/kubernetes.nix
+      ./modules/cockpit.nix
+      ./modules/docker.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
