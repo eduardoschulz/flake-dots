@@ -15,6 +15,8 @@ in
     ../homemanager/modules/browsers.nix
     ../homemanager/modules/term.nix
     ../homemanager/modules/services.nix
+    ../homemanager/modules/waybar/waybar.nix
+
   ];
 
   fonts.fontconfig.enable = true;
@@ -113,8 +115,5 @@ in
     size = 24;
     package = pkgs.whitesur-cursors;
   };
-
-  programs.waybar.enable = true;
-
 
 }
