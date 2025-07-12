@@ -90,12 +90,6 @@
             Driver "amdgpu"
             BusID "PCI:0:1:0"  
         EndSection
-
-        Section "Device"
-            Identifier "NVIDIA"
-            Driver "nouveau"
-            BusID "PCI:0:2:0"  
-        EndSection
       '';
 
       xkb.layout = "us";
