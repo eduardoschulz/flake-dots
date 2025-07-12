@@ -22,26 +22,28 @@
     		 options zfs zfs_arc_min=1073741824
     	'';
   fileSystems."/" =
-  { device = "/dev/disk/by-uuid/adf72096-dc4a-4577-afa0-2f19748ffa42";
+    {
+      device = "/dev/disk/by-uuid/adf72096-dc4a-4577-afa0-2f19748ffa42";
       fsType = "ext4";
-  };
+    };
 
   fileSystems."/boot" =
-  { device = "/dev/disk/by-uuid/4237-F04B";
+    {
+      device = "/dev/disk/by-uuid/4237-F04B";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
-  };
+    };
 
   fileSystems."/home" =
-  { device = "/dev/disk/by-uuid/d76fbb41-a76a-4e8b-bfcb-95a084295f14";
+    {
+      device = "/dev/disk/by-uuid/d76fbb41-a76a-4e8b-bfcb-95a084295f14";
       fsType = "ext4";
-  };
+    };
 
   swapDevices =
-      [ { device = "/dev/disk/by-uuid/02057c80-bd2b-482a-85b0-d00a74020f36"; }
-      ];
+    [{ device = "/dev/disk/by-uuid/02057c80-bd2b-482a-85b0-d00a74020f36"; }];
 
-  
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
