@@ -6,6 +6,7 @@
     ./modules/kubernetes/kubernetes.nix
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
+    ./modules/k3s.nix
   ];
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 

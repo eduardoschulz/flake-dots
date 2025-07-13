@@ -8,6 +8,7 @@
       # ./modules/kubernetes.nix
       ./modules/cockpit.nix
       ./modules/docker.nix
+      ./modules/k3s.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
