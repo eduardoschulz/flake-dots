@@ -15,6 +15,9 @@ in
     ../homemanager/modules/browsers.nix
     ../homemanager/modules/term.nix
     ../homemanager/modules/services.nix
+    ../homemanager/modules/waybar/waybar.nix
+    ../homemanager/modules/rofi/rofi.nix
+
   ];
 
   fonts.fontconfig.enable = true;
@@ -107,14 +110,10 @@ in
     keyMode = "vi";
   };
 
-
   gtk.cursorTheme = {
     name = "WhiteSur-cursors";
     size = 24;
     package = pkgs.whitesur-cursors;
   };
-
-  programs.waybar.enable = true;
-
 
 }

@@ -5,9 +5,10 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./modules/kubernetes.nix
+      # ./modules/kubernetes.nix
       ./modules/cockpit.nix
       ./modules/docker.nix
+      ./modules/k3s.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -25,21 +26,22 @@
       auto-optimise-store = true;
     };
   };
- nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-             "nvidia-x11" "nvidia-settings"
- ];
- nixpkgs.config.nvidia.acceptLicense = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "nvidia-x11"
+    "nvidia-settings"
+  ];
+  nixpkgs.config.nvidia.acceptLicense = true;
   # Enable the X11 windowing system.
   services.xserver.enable = false;
 
-  
-  services.xserver.videoDrivers = [ "nvidia"];
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   #hardware.nvidia.datacenter.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-    datacenter.enable = false; 
+    datacenter.enable = false;
   };
 
   # Enable the GNOME Desktop Environment.

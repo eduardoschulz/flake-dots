@@ -3,8 +3,10 @@
 {
   imports = [
     # Include the results of the hardware scan.
+    ./modules/kubernetes/kubernetes.nix
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
+    ./modules/k3s.nix
   ];
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
@@ -89,12 +91,6 @@
             Identifier "AMD"
             Driver "amdgpu"
             BusID "PCI:0:1:0"  
-        EndSection
-
-        Section "Device"
-            Identifier "NVIDIA"
-            Driver "nouveau"
-            BusID "PCI:0:2:0"  
         EndSection
       '';
 

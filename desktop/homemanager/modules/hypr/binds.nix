@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.settings = {
     "$terminal" = "kitty";
     "$fileManager" = "dolphin";
-    "$menu" = "wofi --show drun";
+    "$menu" = "rofi -show drun";
     "$mainMod" = "ALT";
 
     bind = [

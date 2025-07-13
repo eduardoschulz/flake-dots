@@ -1,0 +1,14 @@
+configuration {
+	/*---------- General setting ----------*/
+	modi: "drun,run,filebrowser,window";
+	case-sensitive: false;
+	cycle: true;
+	filter: "";
+	scroll-method: 0;
+	normalize-match: true;
+	show-icons: true;
+	icon-theme: "Papirus";
+/*	cache-dir: ;*/
+	steal-focus: false;
+/*	dpi: -1;*/
+}
