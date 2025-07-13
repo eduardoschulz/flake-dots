@@ -7,13 +7,13 @@ let
   toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
 
   /* Spell Dictionaries */
-  nvim-spell-pt-utf8-dictionary = builtins.fetchurl {
+  /* nvim-spell-pt-utf8-dictionary = builtins.fetchurl {
     url = "http://ftp.vim.org/vim/runtime/spell/pt.utf-8.spl";
     sha256 = "0fxnd9fvvxawmwas9yh47rakk65k7jjav1ikzcy7h6wmnq0c2pry";
   };
-
+*/
   nvim-spell-en-utf8-dictionary = builtins.fetchurl {
-    url = "http://ftp.vim.org/vim/runtime/spell/en.utf-8.spl";
+    url = "https://github.com/vim/vim/raw/refs/heads/master/runtime/spell/en.utf-8.spl";
     sha256 = "0w1h9lw2c52is553r8yh5qzyc9dbbraa57w9q0r9v8xn974vvjpy";
   };
 in
@@ -120,6 +120,6 @@ in
       		'';
   };
 
-  xdg.configFile."nvim/spell/pt.utf-8.spl".source = nvim-spell-pt-utf8-dictionary;
+/*   xdg.configFile."nvim/spell/pt.utf-8.spl".source = nvim-spell-pt-utf8-dictionary; */
   xdg.configFile."nvim/spell/en.utf-8.spl".source = nvim-spell-en-utf8-dictionary;
 }
