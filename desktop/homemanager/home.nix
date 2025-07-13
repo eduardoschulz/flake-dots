@@ -110,7 +110,6 @@ in
     keyMode = "vi";
   };
 
-
   gtk.cursorTheme = {
     name = "WhiteSur-cursors";
     size = 24;

@@ -1,0 +1,10 @@
+
+/* based on catppuccin mocha */
+{
+    background:     #1e1e2e; /* base */
+    background-alt: #181825; /* mantle */
+    foreground:     #cdd6f4; /* text */
+    selected:       #89b4fa; /* blue */
+    active:         #a6e3a1; /* green */
+    urgent:         #f38ba8; /* red */
+}
