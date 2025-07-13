@@ -42,7 +42,6 @@
     datacenter.enable = false; 
   };
 
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = false;
