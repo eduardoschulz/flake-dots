@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 /* Note for me in the future:
-This is a working configuration for a Single Master node. 
-I just couldn't make the worker node connect to it.
+  This is a working configuration for a Single Master node. 
+  I just couldn't make the worker node connect to it.
 */
 
 

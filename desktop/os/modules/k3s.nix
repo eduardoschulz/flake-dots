@@ -12,7 +12,7 @@
   services.k3s = {
     enable = true;
     role = "server";
-  #  tokenFile = config.sops.secrets."tokenk3s".path;
+    #  tokenFile = config.sops.secrets."tokenk3s".path;
     token = "d0dorl.2184oicbmsg21r2f";
     serverAddr = "https://192.168.0.129:6443";
   };

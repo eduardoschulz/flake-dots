@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   services.etcd = {
@@ -9,13 +9,13 @@
     listenPeerUrls = [ "http://0.0.0.0:2380" ];
     initialAdvertisePeerUrls = [ "http://core:2380" ];
     initialCluster = [
-        "core=http://core:2380"
-        "nixserver=http://nixserver:2380"
+      "core=http://core:2380"
+      "nixserver=http://nixserver:2380"
     ];
     initialClusterState = "new";
     initialClusterToken = "etcd-cluster";
   };
-  
+
 
   services.kubernetes = {
     roles = [ "node" ];
