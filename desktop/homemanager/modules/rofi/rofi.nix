@@ -1,8 +1,8 @@
 {
-    programs.rofi = {
-        enable = true;
-        theme = builtins.readFile ./catppuccin.rasi;
-    };
+  programs.rofi = {
+    enable = true;
+    theme = builtins.readFile ./catppuccin.rasi;
+  };
 
 
 }
