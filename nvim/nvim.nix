@@ -1,5 +1,5 @@
 /*
-   	Configuration for Desktop and Laptop Neovim.
+  	Configuration for Desktop and Laptop Neovim.
 */
 { pkgs, ... }:
 let
