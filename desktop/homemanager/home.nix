@@ -16,6 +16,7 @@ in
     ../homemanager/modules/term.nix
     ../homemanager/modules/services.nix
     ../homemanager/modules/waybar/waybar.nix
+    ../homemanager/modules/rofi/rofi.nix 
 
   ];
 
