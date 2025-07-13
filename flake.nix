@@ -13,9 +13,11 @@
     catppuccin.url = "github:catppuccin/nix";
     dwm-flake.url = "github:eduardoschulz/dwm";
     st-flake.url = "github:eduardoschulz/st";
+    sops-nix.url = "github:Mic92/sops-nix";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, dwm-flake, st-flake, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, dwm-flake, st-flake, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -40,6 +42,7 @@
             {
               nixpkgs.overlays = [ dwmOverlay ];
             }
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -56,6 +59,7 @@
         server = lib.nixosSystem {
           inherit system;
           modules = [
+            sops-nix.nixosModules.sops
             server/os/configuration.nix
             { }
           ];
