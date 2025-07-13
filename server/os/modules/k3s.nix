@@ -12,7 +12,7 @@
   services.k3s = {
     enable = true;
     role = "server";
-    token = "d0dorl.2184oicbmsg21r2f";
+#    token = "d0dorl.2184oicbmsg21r2f";
     #tokenFile = config.sops.secrets."tokenk3s".path;
     clusterInit = true;
   };
