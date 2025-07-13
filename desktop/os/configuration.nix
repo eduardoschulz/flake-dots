@@ -3,6 +3,7 @@
 {
   imports = [
     # Include the results of the hardware scan.
+    ./modules/kubernetes/kubernetes.nix
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
   ];
