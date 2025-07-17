@@ -15,8 +15,8 @@
     token = "314d6ffb427b9ba2c89704663f5a87d8"; #really really bad practice
     clusterInit = true;
     extraFlags = toString [
-        "--write-kubeconfig-mode 640"
-        "--write-kubeconfig-group wheel"
+      "--write-kubeconfig-mode 640"
+      "--write-kubeconfig-group wheel"
     ];
   };
 }
