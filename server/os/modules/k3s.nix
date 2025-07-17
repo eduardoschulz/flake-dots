@@ -12,9 +12,12 @@
   services.k3s = {
     enable = true;
     role = "server";
-    #    token = "d0dorl.2184oicbmsg21r2f";
-    #tokenFile = config.sops.secrets."tokenk3s".path;
+    token = "314d6ffb427b9ba2c89704663f5a87d8"; #really really bad practice
     clusterInit = true;
+    extraFlags = toString [
+        "--write-kubeconfig-mode 640"
+        "--write-kubeconfig-group wheel"
+    ];
   };
 }
 

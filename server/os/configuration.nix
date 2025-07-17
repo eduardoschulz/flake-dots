@@ -37,7 +37,6 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  #hardware.nvidia.datacenter.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
@@ -87,6 +86,16 @@
 
   };
 
+
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+    "ad2f2b43-48ca-4ca7-974c-e689d07f64a3" = {
+      credentialsFile = "/home/eduardo/.cloudflare/token";
+      default = "https_status:404";
+    };
+  };
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
