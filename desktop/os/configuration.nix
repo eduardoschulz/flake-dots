@@ -5,7 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
-    ./modules/k3s.nix
+#    ./modules/k3s.nix
   ];
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
