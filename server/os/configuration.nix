@@ -90,11 +90,11 @@
   services.cloudflared = {
     enable = true;
     tunnels = {
-    "ad2f2b43-48ca-4ca7-974c-e689d07f64a3" = {
-      credentialsFile = "/home/eduardo/.cloudflare/token";
-      default = "https_status:404";
+      "ad2f2b43-48ca-4ca7-974c-e689d07f64a3" = {
+        credentialsFile = "/home/eduardo/.cloudflare/token";
+        default = "https_status:404";
+      };
     };
-  };
   };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
