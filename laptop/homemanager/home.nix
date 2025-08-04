@@ -7,9 +7,6 @@ in
 
   imports = [
     ../../nvim/nvim.nix
-    ./modules/hypr/main.conf
-    ./modules/hypr/hyprpaper.nix
-    ./modules/hypr/binds.nix
   ];
 
 
@@ -30,13 +27,6 @@ in
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
     };
-    /* overlays = [
-                                                                              				(final: prev: {
-                                                                                                 					slstatus = prev.slstatus.overrideAttrs (old: {src = /home/eduardo/.config/slstatus;});
-                                                                                                 					st = prev.st.overrideAttrs (old: {src = /home/eduardo/.config/st;});
-                                                                                                 					surf = prev.surf.overrideAttrs (old: {src = /home/eduardo/.config/surf;});
-                                                                              				})
-                                                           			]; */
 
 
   };
@@ -44,57 +34,37 @@ in
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";
-    stateVersion = "24.11";
+    stateVersion = "25.05";
 
     packages = with pkgs; [
-      wget
-      jq
+    
       neofetch
-      cargo
+    
       dunst
       feh
-      freetype
-      gimp
       git
       unzip
       virt-manager
       xdg-desktop-portal-gtk
       zoxide
-      firefox
-      arduino
       discord
-      zathura
       pandoc
       pavucontrol
       screen
       transmission-gtk
-      librewolf
       htop
       meslo-lg
-      vesktop
-      vencord
-      mangohud
-      st
-      dmenu
-      dunst
       kubectl
       networkmanagerapplet
       pasystray
-      obsidian
-      slstatus
-      surf
-      nitrogen
-      bemenu
-      hyprpaper
-      waybar
-      hyprlock
       ungoogled-chromium
 
     ];
   };
 
+  programs.kitty.enable = true;
   programs.alacritty = {
-    enable = true;
+    enable = false;
     catppuccin.enable = true;
     settings = {
       window = {
@@ -126,24 +96,6 @@ in
     catppuccin.enable = true;
   };
 
-  programs.wofi = {
-    enable = true;
-    settings = {
-      show = "drun";
-      width = 750;
-      height = 400;
-      always_parse_args = true;
-      show_all = false;
-      term = "kitty";
-      hide_scroll = true;
-      print_command = true;
-      insensitive = true;
-      columns = 2;
-    };
-
-
-
-  };
   programs.tmux = {
     enable = true;
     keyMode = "vi";
