@@ -5,7 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/zerotier/zerotier.nix
-    #    ./modules/k3s.nix
+    ./modules/k3s.nix
   ];
   systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
@@ -223,6 +223,16 @@
   };
 
   # Open ports in the firewall.
+  networking.interfaces.enp10s0 = {
+    useDHCP = false;
+    ipv4.addresses = [{
+        address = "192.168.0.101";
+        prefixLength = 24;
+    }];
+   };
+  networking.defaultGateway = "192.168.0.1";
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+
   networking.firewall.enable = false;
   #networking.firewall.allowedTCPPorts = [ 9001 9002 3000 ];
   #networking.firewall.allowedUDPPorts = [ ... ];

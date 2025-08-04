@@ -12,9 +12,12 @@
   services.k3s = {
     enable = true;
     role = "agent";
-    #  tokenFile = config.sops.secrets."tokenk3s".path;
-    token = "K1057fc00131313a95d64b9072cee14c4b8a806ddaa6eb879a7bec601c968dc5f00::server:d0dorl.2184oicbmsg21r2f";
-    serverAddr = "https://192.168.0.129:6443";
+    token = "314d6ffb427b9ba2c89704663f5a87d8"; #really really bad practice
+    serverAddr = "https://192.168.0.100:6443";
+    /* extraFlags = toString [
+        "--write-kubeconfig-mode 640"
+        "--write-kubeconfig-group wheel"
+    ]; */
   };
 }
 

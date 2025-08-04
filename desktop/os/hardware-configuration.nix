@@ -16,7 +16,9 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.forceImportRoot = false;
-
+  boot.zfs.extraPools = [ "drivepool" ];
+  services.zfs.autoScrub.enable = true;
+  services.zfs.autoSnapshot.enable = true;
   boot.extraModprobeConfig = ''
     		 options zfs zfs_arc_max=4294967296 
     		 options zfs zfs_arc_min=1073741824
