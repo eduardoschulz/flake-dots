@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixserver"; # Define your hostname.
+  networking.hostName = "odyssey"; # Define your hostname.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
