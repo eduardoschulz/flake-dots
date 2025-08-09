@@ -117,7 +117,7 @@
   # boot.zfs.forceImportRoot = false;
   networking.hostId = "19499fb6";
 
-  networking.hostName = "core"; # Define your hostname.
+  networking.hostName = "pioneer"; # Define your hostname.
   # Enable networking
   networking.networkmanager.enable = true;
 

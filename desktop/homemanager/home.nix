@@ -89,6 +89,10 @@ in
       hyprpolkitagent
       wl-clipboard
       hyprshot
+      vscode
+      zotero
+      calibre
+      obs-studio
     ];
 
     sessionVariables = {
