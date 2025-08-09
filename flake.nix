@@ -69,7 +69,7 @@
         desktop = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system; };
           modules = [
-            catppuccin.homeManagerModules.catppuccin
+            catppuccin.homeModules.catppuccin
             desktop/homemanager/home.nix
             {
               nixpkgs.overlays = [ stOverlay ];
@@ -88,7 +88,7 @@
         laptop = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system; };
           modules = [
-            catppuccin.homeManagerModules.catppuccin
+            catppuccin.homeModules.catppuccin
             laptop/homemanager/home.nix
             {
               nixpkgs.overlays = [ stOverlay ];

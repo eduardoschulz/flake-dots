@@ -30,7 +30,13 @@ in
     };
   };
 
-  catppuccin.flavor = "macchiato";
+  catppuccin = {
+    flavor = "macchiato";
+    kitty.enable = true;
+    dunst.enable = true;
+    alacritty.enable = true;
+  };
+
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -65,7 +71,7 @@ in
       pandoc
       pavucontrol
       screen
-      transmission-gtk
+      transmission_4-gtk
       htop
       meslo-lg
       vesktop
