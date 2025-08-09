@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixserver"; # Define your hostname.
+  networking.hostName = "odyssey"; # Define your hostname.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -105,13 +105,13 @@
   networking.interfaces.enp3s0 = {
     useDHCP = false;
     ipv4.addresses = [{
-        address = "192.168.0.100";
-        prefixLength = 24;
+      address = "192.168.0.100";
+      prefixLength = 24;
     }];
   };
 
   networking.defaultGateway = "192.168.0.1";
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8"];
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
 
   system.stateVersion = "25.05"; # Did you read the comment?
