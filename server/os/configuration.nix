@@ -6,6 +6,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # ./modules/kubernetes.nix
+      ./modules/metrics.nix
       ./modules/cockpit.nix
       ./modules/docker.nix
       ./modules/k3s.nix
