@@ -1,5 +1,5 @@
 {
-services.prometheus = {
+  services.prometheus = {
     exporters = {
       node = {
         enable = true;
@@ -7,6 +7,6 @@ services.prometheus = {
         port = 9100;
       };
     };
-};
+  };
 }
 
