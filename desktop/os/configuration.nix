@@ -321,24 +321,13 @@
             "localhost:${
               toString config.services.prometheus.exporters.node.port
             }"
-            "192.168.122.230:9100"
-            "192.168.122.78:9100"
-            "192.168.122.82:9100"
+            "192.168.0.100:9100"
+            "192.168.0.101:9100"
           ];
         }];
 
       }
 
-      {
-        job_name = "docker";
-        static_configs = [{
-          targets = [
-            "192.168.122.230:9323"
-            "192.168.122.78:9323"
-            "192.168.122.82:9323"
-          ];
-        }];
-      }
     ];
   };
   services.cockpit = {
