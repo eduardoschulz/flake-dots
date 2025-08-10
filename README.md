@@ -32,7 +32,7 @@ Everything is managed declaratively via Home Manager.
 ---
 ## ⚙️ Usage
 
-### 🖥️ Desktop
+### 🖥️ Desktop - Pioneer
 
 ```bash
 # Rebuild full system with flake
@@ -43,7 +43,7 @@ nix build .#hmConfig.desktop.activationPackage
 ./result/activate
 ````
 
-### 💻 Laptop
+### 💻 Laptop - Voyager
 
 ```bash
 # Rebuild full system with flake
@@ -53,5 +53,16 @@ sudo nixos-rebuild --flake .#laptop
 nix build .#hmConfig.laptop.activationPackage
 ./result/activate
 ```
+### 🌐 Server - Odyssey
+
+```bash
+# Rebuild full system with flake
+sudo nixos-rebuild --flake .#server
+
+# Build and activate only Home Manager
+nix build .#hmConfig.server.activationPackage
+./result/activate
+```
+
 
 
