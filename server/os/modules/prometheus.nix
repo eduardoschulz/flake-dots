@@ -1,6 +1,6 @@
 {
-    services.prometheus = {
-        node.enable = true;
-        node.port = 9100;
-    };
+  services.prometheus = {
+    node.enable = true;
+    node.port = 9100;
+  };
 }
